@@ -10,6 +10,7 @@ dependencies
 [Hyprlock](https://github.com/hyprwm/hyprlock)
 [Terminal](https://github.com/kovidgoyal/kitty)
 [rofi](https://github.com/davatorium/rofi)
+[neovim - AstroVim](https://astronvim.com/)
 
 
 credits 
