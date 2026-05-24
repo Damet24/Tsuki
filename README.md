@@ -1,33 +1,172 @@
-
 <h1 align="center">
     <div align="center">
         <img src=".github/images/tsuki.png" width="100%">
     </div>
 </h1>
 
+<p align="center">
+    <b>月</b> — Dotfiles for Hyprland, Waybar, Eww and more
+</p>
 
-<div align="center">
-    The <b>Arch Linux & AwesomeWM</b> dotfiles!<br>
-</div>
+<p align="center">
+    <img src=".github/images/screenshot_1.png" width="49%">
+    <img src=".github/images/screenshot_2.png" width="49%">
+</p>
 
 ---
 
-dependencies
+## Table of Contents
 
-[awww](https://codeberg.org/LGFae/awww)
-[eww](https://github.com/elkowar/eww)
-[end-rs](https://github.com/Dr-42/end-rs)
-[waybar](https://github.com/alexays/waybar)
-[Hyprlock](https://github.com/hyprwm/hyprlock)
-[Terminal](https://github.com/kovidgoyal/kitty)
-[rofi](https://github.com/davatorium/rofi)
-[neovim - AstroVim](https://astronvim.com/)
+- [Stack](#stack)
+- [Installation](#installation)
+  - [Dependencies](#dependencies)
+  - [dotctl](#dotctl)
+- [Structure](#structure)
+- [Usage](#usage)
+  - [dotctl](#dotctl-1)
+  - [Scripts](#scripts)
+- [Customization](#customization)
+  - [Waybar Themes](#waybar-themes)
+  - [Colors](#colors)
+- [Credits](#credits)
 
+---
 
-credits 
-[waybar theme: V2.5c](https://github.com/HANCORE-linux/waybar-themes)
+## Stack
 
+| Component | Tool |
+|-----------|------|
+| Compositor | [Hyprland](https://hyprland.org/) (Lua) |
+| Status Bar | [Waybar](https://github.com/Alexays/Waybar) |
+| Widgets | [Eww](https://github.com/elkowar/eww) |
+| Notifications | [end-rs](https://github.com/Dr-42/end-rs) + Eww |
+| Lockscreen | [Hyprlock](https://github.com/hyprwm/hyprlock) |
+| Terminal | [Kitty](https://github.com/kovidgoyal/kitty) |
+| App Launcher | [Rofi](https://github.com/davatorium/rofi) |
+| Editor | [Neovim](https://neovim.io/) (AstroVim) |
+| Prompt | [Starship](https://starship.rs/) (Catppuccin Mocha) |
+| Shell | Zsh (Oh My Zsh) |
 
-cosas que uso
+---
 
-nmcli
+## Installation
+
+### Dependencies
+
+Make sure you have the following tools installed:
+
+- [awww](https://codeberg.org/LGFae/awww) — Animated wallpaper
+- [eww](https://github.com/elkowar/eww) — Desktop widgets
+- [end-rs](https://github.com/Dr-42/end-rs) — Notification daemon
+- [waybar](https://github.com/Alexays/Waybar) — Status bar
+- [Hyprlock](https://github.com/hyprwm/hyprlock) — Lock screen
+- [kitty](https://github.com/kovidgoyal/kitty) — Terminal
+- [rofi](https://github.com/davatorium/rofi) — App launcher
+- [Neovim + AstroVim](https://astronvim.com/) — Editor
+- [nmcli](https://networkmanager.dev/) — Network management
+
+### dotctl
+
+This repo uses `dotctl`, a dotfiles manager written in Python. To sync the files to your `$HOME`:
+
+```bash
+git clone https://github.com/youruser/tsuki ~/tsuki
+cd ~/tsuki
+python3 scripts/sync init
+python3 scripts/sync sync
+```
+
+> **Warning**: Review the files before syncing. `dotctl` will replace existing files in your `$HOME` (with `.bak` backup).
+
+---
+
+## Structure
+
+```
+├── .config/
+│   ├── end-rs/       # Notification daemon config
+│   ├── eww/          # Widgets (panel, music, OSD, notifications)
+│   ├── hypr/         # Hyprland config (Lua)
+│   ├── kitty/        # Terminal + ~100 themes
+│   └── waybar/       # Status bar (ryu and minimal themes)
+├── .dotctl/          # dotctl internal state
+├── .github/images/   # Screenshots
+├── scripts/          # Utility scripts (see below)
+├── tests/            # dotctl tests
+├── .zshrc            # Zsh config
+├── starship.toml     # Starship prompt theme
+├── LICENSE           # GPL v3
+└── README.md
+```
+
+---
+
+## Usage
+
+### dotctl
+
+| Command | Description |
+|---------|-------------|
+| `dotctl sync` | Sync dotfiles to `$HOME` |
+| `dotctl sync -f` | Force sync (backs up existing files) |
+| `dotctl sync --dry-run` | Preview without writing |
+| `dotctl diff` | Show differences between repo and `$HOME` |
+| `dotctl status` | Show profile and tracked files |
+| `dotctl init` | Initialize `.dotctl/` in the repo |
+| `dotctl snapshot` | Save current state |
+| `dotctl rollback <snapshot>` | Restore a previous state |
+| `dotctl prune` | Clean up broken symlinks |
+
+### Scripts
+
+Scripts in `scripts/` are used by Eww and Waybar widgets:
+
+| Script | Purpose |
+|--------|---------|
+| `battery` | Battery status |
+| `cpu` | CPU usage |
+| `memory` | Memory usage |
+| `vol` | Audio volume (PipeWire) |
+| `volume_osd` | Volume OSD |
+| `music_info` | Music control (MPRIS) |
+| `get_cover` | Album cover art |
+| `network` | Network status |
+| `wifi` | WiFi status |
+| `notifs` | Notification status |
+| `toggle_notifications` | Toggle Do Not Disturb |
+| `test_notifs` | Test notifications |
+| `launch_waybar` | Switch Waybar theme |
+| `mem-ad` | Total/used/free memory |
+
+---
+
+## Customization
+
+### Waybar Themes
+
+Use `launch_waybar` to switch between themes:
+
+```bash
+scripts/launch_waybar ryu      # Full-featured theme
+scripts/launch_waybar minimal  # Minimal theme
+```
+
+### Colors
+
+The color scheme is defined in:
+- **Hyprland**: `.config/hypr/colors.lua`
+- **Eww**: `.config/eww/_colors.scss`
+- **Starship**: `starship.toml`
+
+---
+
+## Credits
+
+- [Waybar theme V2.5c](https://github.com/HANCORE-linux/waybar-themes) — Inspiration for the Waybar themes
+- [Catppuccin](https://github.com/catppuccin) — Color palette
+
+---
+
+<p align="center">
+    <sub>Built with ☕ by <a href="https://github.com/damet">damet</a></sub>
+</p>
