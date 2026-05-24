@@ -1,7 +1,7 @@
 
 <h1 align="center">
     <div align="center">
-        <img src=".github/images/tsuki.png" width=140>
+        <img src=".github/images/tsuki.png" width="100%">
     </div>
 </h1>
 
