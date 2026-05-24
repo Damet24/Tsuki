@@ -64,23 +64,23 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Multimedia keys
 hl.bind("XF86AudioRaiseVolume", function()
-	hl.exec_cmd("~/.config/eww/scripts/volume_osd")
+	hl.exec_cmd("~/scripts/volume_osd")
 	hl.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
 end, { locked = true, repeating = true })
 
 hl.bind("XF86AudioLowerVolume", function()
-	hl.exec_cmd("~/.config/eww/scripts/volume_osd")
+	hl.exec_cmd("~/scripts/volume_osd")
 	hl.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-")
 end, { locked = true, repeating = true })
 
 hl.bind(
 	"XF86AudioMute",
-	hl.dsp.exec_cmd("~/.config/eww/scripts/volume_osd && wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	hl.dsp.exec_cmd("~/scripts/volume_osd && wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("~/.config/eww/scripts/volume_osd && wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	hl.dsp.exec_cmd("~/scripts/volume_osd && wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
