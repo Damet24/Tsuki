@@ -1,0 +1,56 @@
+#!/bin/bash
+
+ACTION="$1"
+
+WAYBAR_DIR="$HOME/.config/waybar"
+THEMES_DIR="$WAYBAR_DIR"
+CURRENT_LINK="$WAYBAR_DIR/current"
+
+restart_waybar() {
+    pkill waybar
+
+    waybar \
+      -c "$HOME/.config/waybar/current/config.jsonc" \
+      -s "$HOME/.config/waybar/current/style.css" &
+}
+
+# listar temas
+if [ "$ACTION" = "list" ]; then
+    for dir in "$THEMES_DIR"/*; do
+        if [ -d "$dir" ]; then
+            name=$(basename "$dir")
+
+            [ "$name" = "current" ] && continue
+
+            echo "$name"
+        fi
+    done
+
+    exit 0
+fi
+
+# reiniciar waybar
+if [ "$ACTION" = "restart" ]; then
+    restart_waybar
+    exit 0
+fi
+
+# verificar argumento
+if [ -z "$ACTION" ]; then
+    echo "Uso:"
+    echo "  waybar-theme list"
+    echo "  waybar-theme restart"
+    echo "  waybar-theme <tema>"
+    exit 1
+fi
+
+# verificar que exista
+if [ ! -d "$THEMES_DIR/$ACTION" ]; then
+    echo "Tema no encontrado: $ACTION"
+    exit 1
+fi
+
+# actualizar symlink
+ln -sfn "$THEMES_DIR/$ACTION" "$CURRENT_LINK"
+
+restart_waybar

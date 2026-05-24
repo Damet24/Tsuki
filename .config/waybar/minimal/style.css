@@ -1,0 +1,132 @@
+@define-color bg #000000;
+@define-color fg #ffffff;
+@define-color muted #858585;
+@define-color accent #8ab4f8;
+@define-color red #ff5d5d;
+
+
+* {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 900;
+    border: none;
+    border-radius: 0px;
+    margin: 0rem 0rem 0rem 0rem;
+    min-height: 0;
+    min-width: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+#waybar>box {
+    min-height: 25px;
+    border-radius: 10px;
+    background-color: @bg;
+    box-shadow:
+        0px 2px 4px rgba(0, 0, 0, 0.2),
+        0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+tooltip {
+    padding: 4px;
+    background: @bg;
+    font-size: 10px;
+    border-radius: 6px;
+
+}
+
+tooltip label {
+    color: alpha(@fg, 1);
+    font-weight: normal;
+}
+
+#tray,
+#idle_inhibitor,
+#memory,
+#cpu,
+#battery,
+#battery.discharging,
+#battery.full,
+#battery.plugged,
+#battery.charging,
+#backlight,
+#network,
+#network.disconnected,
+#network.wifi,
+#network.ethernet,
+#bluetooth,
+#pulseaudio,
+#pulseaudio.input,
+#pulseaudio.output,
+#power-profiles-daemon,
+#power-profiles-daemon.performance,
+#power-profiles-daemon.balanced,
+#power-profiles-daemon.power-saver,
+#custom-weather,
+#custom-clock,
+#custom-updatespacman,
+#custom-screenrecording-indicator,
+#custom-screenrecording-indicator.active,
+#custom-update,
+#custom-home,
+#custom-end-history {
+    color: @fg;
+    background: @bg;
+    opacity: 1;
+    border-radius: 8px;
+    padding: 6px;
+    margin: 2px 2px;
+}
+
+
+#workspaces {
+    background-color: transparent;
+    margin: 2px;
+    padding: 0;
+}
+
+#workspaces button {
+    color: @fg;
+    margin: 2px;
+    padding: 6px;
+    border-radius: 50%;
+    min-width: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+    background-color: rgba(79, 79, 79, 0.2);
+    color: @accent;
+    border-radius: 50%;
+}
+
+#workspaces button.empty {
+    color: @muted;
+    background-color: transparent;
+    min-width: 20px;
+    padding: 6px;
+}
+
+#workspaces button.empty.active {
+    background-color: rgba(79, 79, 79, 0.2);
+    color: @fg;
+    min-width: 20px;
+    padding: 6px;
+}
+
+#workspaces button:hover {
+    background-color: alpha(@gold, 0.4);
+    color: @accent;
+}
+
+#workspaces button.empty:hover {
+    background-color: rgba(79, 79, 79, 0.2);
+    color: @accent;
+}
+
+#workspaces button.urgent {
+    background-color: rgba(79, 79, 79, 0.2);
+    color: @red;
+}
