@@ -1,0 +1,12 @@
+## Tsuki
+
+
+dependencies
+
+[awww](https://codeberg.org/LGFae/awww)
+[eww](https://github.com/elkowar/eww)
+[end-rs](https://github.com/Dr-42/end-rs)
+[waybar](https://github.com/alexays/waybar)
+[Hyprlock](https://github.com/hyprwm/hyprlock)
+[Terminal](https://github.com/kovidgoyal/kitty)
+[rofi](https://github.com/davatorium/rofi)
