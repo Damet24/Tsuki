@@ -471,3 +471,11 @@
 [2026-05-24T17:11:38.548220] LINK /home/damet/.config/hypr/keybindings/mouse.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/mouse.lua
 [2026-05-24T17:11:38.548465] LINK /home/damet/.config/hypr/keybindings/multimedia.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/multimedia.lua
 [2026-05-24T17:11:38.594647] SYNC end
+[2026-05-24T18:07:28.446433] SYNC start profile=default
+[2026-05-24T18:07:28.447244] LINK /home/damet/LICENSE -> /home/damet/Development/tsuki/LICENSE
+[2026-05-24T18:07:42.960745] SYNC start profile=default
+[2026-05-24T18:07:42.965621] LINK /home/damet/.config/waybar/ryu/style.css -> /home/damet/Development/tsuki/.config/waybar/ryu/style.css
+[2026-05-24T18:07:42.965849] LINK /home/damet/.config/waybar/ryu/config.jsonc -> /home/damet/Development/tsuki/.config/waybar/ryu/config.jsonc
+[2026-05-24T18:07:42.966128] LINK /home/damet/.config/waybar/minimal/config.jsonc -> /home/damet/Development/tsuki/.config/waybar/minimal/config.jsonc
+[2026-05-24T18:07:42.966326] LINK /home/damet/.config/waybar/minimal/style.css -> /home/damet/Development/tsuki/.config/waybar/minimal/style.css
+[2026-05-24T18:07:42.991886] SYNC end
