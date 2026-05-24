@@ -32,6 +32,8 @@
 (defpoll wifi_col :interval "15s" "~/scripts/wifi wifi_col")
 (defpoll wifi_bg :interval "17s" "~/scripts/wifi wifi_bg")
 
+(defpoll network_status :interval "5s" "~/scripts/network status")
+
 (defpoll notif_icon :interval "15s" "~/scripts/notifs notifs")
 (defpoll notif_col :interval "15s" "~/scripts/notifs notifs_col")
 (defpoll notif_bg :interval "17s" "~/scripts/notifs notifs_bg")
@@ -196,6 +198,8 @@
         :class "container"
         :vexpand "true"
         
+        (network_status)
+
         (box :vexpand "true")
 
         (box
@@ -449,6 +453,15 @@
       :value volume_percent
     :active "true")
   ))
+
+(defwidget network_status []
+  (box 
+    :class "network_status"
+    :vexpand "false"
+
+    (label :text network_status :halign "start")
+  )
+)
 
 (include "end.yuck")
 

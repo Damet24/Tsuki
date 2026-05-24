@@ -312,6 +312,10 @@ scale highlight {
   }
 }
 
+.network_status {
+  @include bg_container;
+}
+
 /* =========================
    IMPORTS
 ========================= */
