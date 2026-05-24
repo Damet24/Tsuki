@@ -75,7 +75,7 @@ python3 scripts/sync init
 python3 scripts/sync sync
 ```
 
-> **Warning**: Review the files before syncing. `dotctl` will replace existing files in your `$HOME` (with `.bak` backup).
+> **Warning**: Review the files before syncing. `scripts/sync` will replace existing files in your `$HOME` (with `.bak` backup).
 
 ---
 
@@ -106,15 +106,15 @@ python3 scripts/sync sync
 
 | Command | Description |
 |---------|-------------|
-| `dotctl sync` | Sync dotfiles to `$HOME` |
-| `dotctl sync -f` | Force sync (backs up existing files) |
-| `dotctl sync --dry-run` | Preview without writing |
-| `dotctl diff` | Show differences between repo and `$HOME` |
-| `dotctl status` | Show profile and tracked files |
-| `dotctl init` | Initialize `.dotctl/` in the repo |
-| `dotctl snapshot` | Save current state |
-| `dotctl rollback <snapshot>` | Restore a previous state |
-| `dotctl prune` | Clean up broken symlinks |
+| `scripts/sync sync` | Sync dotfiles to `$HOME` |
+| `scripts/sync sync -f` | Force sync (backs up existing files) |
+| `scripts/sync sync --dry-run` | Preview without writing |
+| `scripts/sync diff` | Show differences between repo and `$HOME` |
+| `scripts/sync status` | Show profile and tracked files |
+| `scripts/sync init` | Initialize `.dotctl/` in the repo |
+| `scripts/sync snapshot` | Save current state |
+| `scripts/sync rollback <snapshot>` | Restore a previous state |
+| `scripts/sync prune` | Clean up broken symlinks |
 
 ### Scripts
 
