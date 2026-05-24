@@ -1,0 +1,60 @@
+#!/bin/bash
+
+notify() {
+    notify-send "$1" "$2" -u "$3" ${4:+-i "$4"}
+}
+
+echo "=== Testing end-rs / eww notifications ==="
+echo ""
+
+# Low urgency
+echo "[low] Sending low urgency notification..."
+notify "Low Urgency" "This is a low urgency notification. It should auto-dismiss quickly." low
+
+sleep 1
+
+# Normal urgency
+echo "[normal] Sending normal urgency notification..."
+notify "Normal Urgency" "This is a normal notification with some longer body text to test how wrapping looks in the notification panel." normal
+
+sleep 1
+
+# Critical urgency
+echo "[critical] Sending critical urgency notification..."
+notify "Critical Urgency" "This is a critical notification that should stay until dismissed!" critical
+
+sleep 1
+
+# With app icon
+echo "[icon] Sending notification with app icon..."
+notify "With Icon" "This notification has an app icon (firefox)." normal "firefox"
+
+sleep 1
+
+# Music notification
+echo "[music] Sending music notification..."
+notify "Now Playing" "Song Title - Artist Name" low
+
+sleep 1
+
+# Multi-line
+echo "[multi] Sending multi-line notification..."
+notify -h "string:category:email" "Multi-line" "Line 1\nLine 2\nLine 3\nThis tests multi-line body content." normal
+
+sleep 1
+
+# With percentage
+echo "[percent] Sending notification with progress..."
+notify -h "int:value:42" "Download Progress" "Downloading file... 42%" normal
+
+sleep 1
+
+# Batch test
+echo "[batch] Sending batch of notifications..."
+for i in {1..3}; do
+    notify "Batch $i/3" "This is notification $i of 3 in the batch test." low
+    sleep 0.5
+done
+
+echo ""
+echo "=== Done! Open history panel with SUPER+H ==="

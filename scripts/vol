@@ -1,0 +1,42 @@
+#!/bin/bash
+
+VOL=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null)
+
+MUTED=false
+
+if echo "$VOL" | grep -q MUTED; then
+    MUTED=true
+fi
+
+if $MUTED; then
+    col="#080808"
+    bg="#bdbdbd"
+    icon=""
+else
+    col="#bdbdbd"
+    bg="#080808"
+    icon=""
+fi
+
+case "$1" in
+    vol)
+        echo "$icon"
+        ;;
+
+    vol_col)
+        echo "$col"
+        ;;
+
+    vol_bg)
+        echo "$bg"
+        ;;
+
+    percent)
+        # extraer porcentaje limpio
+        wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'
+        ;;
+
+    *)
+        echo "unknown"
+        ;;
+esac

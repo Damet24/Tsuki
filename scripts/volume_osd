@@ -1,0 +1,10 @@
+#!/bin/bash
+
+~/.local/bin/eww update volume_visible=true
+
+pkill -f "eww update volume_visible=false"
+
+(
+  sleep 1.2
+  ~/.local/bin/eww update volume_visible=false
+) &

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+STATE_FILE="/tmp/end-rs-dnd"
+
+# inicializar si no existe
+if [ ! -f "$STATE_FILE" ]; then
+    echo "false" > "$STATE_FILE"
+fi
+
+CURRENT=$(cat "$STATE_FILE")
+
+if [ "$CURRENT" = "false" ]; then
+    notify-send -i notifications-disabled \
+        "Notifications Disabled"
+
+    end-rs dnd set true
+    echo "true" > "$STATE_FILE"
+else
+
+    end-rs dnd set false
+    echo "false" > "$STATE_FILE"
+
+    notify-send -i notifications-enabled \
+        "Notifications Enabled"
+fi

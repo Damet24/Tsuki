@@ -1,0 +1,179 @@
+#!/bin/bash
+
+COVER="/tmp/.music_cover.jpg"
+
+## =========================
+## STATUS
+## =========================
+get_status() {
+    status="$(playerctl status 2>/dev/null)"
+
+    if [[ "$status" == "Playing" ]]; then
+        echo ""
+    else
+        echo ""
+    fi
+}
+
+## =========================
+## SONG
+## =========================
+get_song() {
+    song="$(playerctl metadata --format '{{title}}' 2>/dev/null)"
+
+    if [[ -z "$song" ]]; then
+        echo "song"
+    else
+        echo "$song"
+    fi
+}
+
+## =========================
+## ARTIST
+## =========================
+get_artist() {
+    artist="$(playerctl metadata --format '{{artist}}' 2>/dev/null)"
+
+    if [[ -z "$artist" ]]; then
+        echo "artist"
+    else
+        echo "$artist"
+    fi
+}
+
+## =========================
+## PROGRESS (%)
+## =========================
+get_time() {
+# Extrae la posición y la longitud en un solo llamado para evitar errores
+    local data
+    data=$(playerctl metadata --format "{{position}} {{mpris:length}}" 2>/dev/null)
+
+    # Si playerctl falla o no hay música reproduciéndose, devuelve "song"
+    if [[ -z "$data" ]]; then
+        echo "song"
+        return
+    fi
+
+    # Calcula el porcentaje de 0 a 100 usando awk
+    local porcentaje
+    porcentaje=$(echo "$data" | awk '{ 
+        pos = $1; len = $2;
+        if (len > 0) {
+            printf "%d", (pos / len) * 100
+        } else {
+            print "0"
+        }
+    }')
+
+    echo "${porcentaje}"
+}
+
+## =========================
+## CURRENT TIME (formatted)
+## =========================
+get_ctime() {
+    playerctl metadata --format '{{duration(position)}}' 2>/dev/null || echo "0:00"
+}
+
+## =========================
+## TOTAL TIME
+## =========================
+get_ttime() {
+    playerctl metadata --format '{{duration(mpris:length)}}' 2>/dev/null || echo "0:00"
+}
+
+## =========================
+## COVER (LIMITED IN MPRIS)
+## =========================
+get_cover() {
+    # MPRIS NO garantiza acceso a archivo local
+    # fallback simple
+    cover_url="$(playerctl metadata mpris:artUrl 2>/dev/null)"
+
+    if [[ -n "$cover_url" ]]; then
+        echo "$cover_url"
+    else
+        echo "images/music.png"
+    fi
+}
+
+## =========================
+## COVER (SPOTIFY - descarga local)
+## =========================
+get_spotify_cover() {
+    cover_url="$(playerctl metadata mpris:artUrl 2>/dev/null)"
+
+    if [[ -z "$cover_url" ]]; then
+        echo "images/music.png"
+        return
+    fi
+
+    if [[ "$cover_url" == file://* ]]; then
+        echo "${cover_url#file://}"
+        return
+    fi
+
+    curl -sL "$cover_url" -o "$COVER" 2>/dev/null
+    if [[ -f "$COVER" ]]; then
+        echo "$COVER"
+    else
+        echo "images/music.png"
+    fi
+}
+
+## =========================
+## LOOP STATUS
+## =========================
+loop_st() {
+    loop="$(playerctl loop 2>/dev/null)"
+
+    if [[ "$loop" == "Track" || "$loop" == "Playlist" ]]; then
+        echo "凌"
+    else
+        echo "稜"
+    fi
+}
+
+## =========================
+## CONTROLS
+## =========================
+if [[ "$1" == "--song" ]]; then
+    get_song
+
+elif [[ "$1" == "--artist" ]]; then
+    get_artist
+
+elif [[ "$1" == "--status" ]]; then
+    get_status
+
+elif [[ "$1" == "--time" ]]; then
+    get_time
+
+elif [[ "$1" == "--ctime" ]]; then
+    get_ctime
+
+elif [[ "$1" == "--ttime" ]]; then
+    get_ttime
+
+elif [[ "$1" == "--cover" ]]; then
+    get_cover
+
+elif [[ "$1" == "--spotify-cover" ]]; then
+    get_spotify_cover
+
+elif [[ "$1" == "--toggle" ]]; then
+    playerctl play-pause
+
+elif [[ "$1" == "--next" ]]; then
+    playerctl next
+
+elif [[ "$1" == "--prev" ]]; then
+    playerctl previous
+
+elif [[ "$1" == "--loop" ]]; then
+    playerctl loop Toggle
+
+elif [[ "$1" == "--loop_ic" ]]; then
+    loop_st
+fi

@@ -1,0 +1,130 @@
+#!/bin/bash
+
+IFACE=$(nmcli -t -f DEVICE,STATE dev | awk -F: '$2=="connected"{print $1; exit}')
+
+has_wifi() {
+  nmcli device status | grep -q "wifi"
+}
+
+get_wifi_iface() {
+  nmcli device status | awk '$2=="wifi"{print $1; exit}'
+}
+
+# =========================
+# STATUS
+# =========================
+status() {
+  if [ -z "$IFACE" ]; then
+    echo "󰖪 offline"
+    exit
+  fi
+
+  TYPE=$(nmcli -t -f DEVICE,TYPE dev | awk -F: -v i="$IFACE" '$1==i {print $2}')
+
+  ICON="󰈀"
+  NAME="$IFACE"
+
+  if [ "$TYPE" = "wifi" ]; then
+    SSID=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2}')
+    ICON="󰤨"
+    NAME="$SSID"
+  fi
+
+  read rx1 tx1 < <(awk -v i="$IFACE" '$1 ~ i":" {print $2, $10}' /proc/net/dev)
+  sleep 1
+  read rx2 tx2 < <(awk -v i="$IFACE" '$1 ~ i":" {print $2, $10}' /proc/net/dev)
+
+  rx=$(( (rx2 - rx1) / 1024 ))
+  tx=$(( (tx2 - tx1) / 1024 ))
+
+  echo "$ICON $NAME | ${rx}K↓ ${tx}K↑"
+}
+
+# =========================
+# SPEED ONLY
+# =========================
+speed() {
+  [ -z "$IFACE" ] && echo "0" && exit
+
+  read rx1 tx1 < <(awk -v i="$IFACE" '$1 ~ i":" {print $2, $10}' /proc/net/dev)
+  sleep 1
+  read rx2 tx2 < <(awk -v i="$IFACE" '$1 ~ i":" {print $2, $10}' /proc/net/dev)
+
+  rx=$(( (rx2 - rx1) / 1024 ))
+  tx=$(( (tx2 - tx1) / 1024 ))
+
+  echo "$rx $tx"
+}
+
+# =========================
+# SSID
+# =========================
+ssid() {
+  nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2}'
+}
+
+# =========================
+# WIFI CONTROL
+# =========================
+wifi_on() {
+  nmcli radio wifi on
+  echo "wifi on"
+}
+
+wifi_off() {
+  nmcli radio wifi off
+  echo "wifi off"
+}
+
+toggle_wifi() {
+  STATE=$(nmcli radio wifi)
+  if [ "$STATE" = "enabled" ]; then
+    wifi_off
+  else
+    wifi_on
+  fi
+}
+
+wifi_list() {
+  nmcli dev wifi list
+}
+
+wifi_connect() {
+  SSID="$1"
+  if [ -z "$SSID" ]; then
+    echo "uso: network wifi-connect <ssid>"
+    exit 1
+  fi
+
+  nmcli dev wifi connect "$SSID"
+}
+
+# =========================
+# MAIN ROUTER
+# =========================
+case "$1" in
+  status) status ;;
+  speed) speed ;;
+  ssid) ssid ;;
+  wifi-on) wifi_on ;;
+  wifi-off) wifi_off ;;
+  toggle-wifi) toggle_wifi ;;
+  wifi-list) wifi_list ;;
+  wifi-connect) wifi_connect "$2" ;;
+  has-wifi)
+  if has_wifi; then
+    echo "wifi supported"
+  else
+    echo "no wifi"
+  fi
+  ;;
+  *)
+    echo "uso:"
+    echo "  network status"
+    echo "  network speed"
+    echo "  network ssid"
+    echo "  network wifi-list"
+    echo "  network wifi-connect <ssid>"
+    echo "  network wifi-on | wifi-off | toggle-wifi"
+    ;;
+esac
