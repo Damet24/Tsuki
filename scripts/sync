@@ -3,6 +3,7 @@
 import os
 import sys
 import json
+import hashlib
 import difflib
 from pathlib import Path
 from datetime import datetime
@@ -70,8 +71,25 @@ def get_profile(cfg):
 def load_state(repo):
     path = state_path(repo)
     if path.exists():
-        return json.loads(path.read_text())
+        data = json.loads(path.read_text())
+        # migrate old format: {"dst": "src"} → {"dst": {"src": "src", "hash": null}}
+        migrated = False
+        for dst, val in list(data.items()):
+            if isinstance(val, str):
+                data[dst] = {"src": val, "hash": None}
+                migrated = True
+        if migrated:
+            save_state(repo, data)
+        return data
     return {}
+
+
+def entry_src(entry):
+    return entry if isinstance(entry, str) else entry["src"]
+
+
+def entry_hash(entry):
+    return None if isinstance(entry, str) else entry.get("hash")
 
 
 def save_state(repo, state):
@@ -155,7 +173,9 @@ def link(src, dst, state, repo, force=False, dry_run=False):
         dst.unlink()
 
     os.symlink(src, dst)
-    state[str(dst)] = str(src)
+
+    file_hash = hashlib.sha256(src.read_bytes()).hexdigest()
+    state[str(dst)] = {"src": str(src), "hash": file_hash}
 
     log(repo, f"LINK {dst} -> {src}")
     print(f"[LINK] {dst}")
@@ -166,30 +186,62 @@ def link(src, dst, state, repo, force=False, dry_run=False):
 # =========================
 def prune(repo, state):
     removed = 0
+    missing = []
 
-    for dst, src in list(state.items()):
+    for dst, entry in list(state.items()):
         dst_path = Path(dst)
-        src_path = Path(src)
+        src_path = Path(entry_src(entry))
 
-        # solo manejar lo que está registrado
         if not is_managed_symlink(dst_path, state):
             continue
 
-        # si no existe destino → limpiar state
-        if not dst_path.exists():
+        # no existe en disco → limpiar state
+        if not os.path.lexists(dst_path):
             state.pop(dst, None)
             continue
 
-        # si no es symlink → ignorar (seguridad)
+        # archivo real (no symlink) → seguridad, no tocar
         if not dst_path.is_symlink():
             continue
 
-        # si fuente desapareció → borrar symlink
+        # symlink (válido o roto) pero src ya no está en repo
         if not src_path.exists():
+            missing.append((dst, entry, dst_path))
+            state.pop(dst, None)
+
+    # rename detection: match missing sources by hash
+    if missing:
+        repo_hashes = {}
+        for p in repo.rglob("*"):
+            if p.is_dir():
+                continue
+            try:
+                h = hashlib.sha256(p.read_bytes()).hexdigest()
+                repo_hashes[h] = p
+            except Exception:
+                pass
+
+        for dst, entry, dst_path in missing:
+            old_hash = entry_hash(entry)
+            # try to compute hash from actual content if not stored
+            if old_hash is None:
+                try:
+                    target = dst_path.resolve()
+                    if target.exists():
+                        old_hash = hashlib.sha256(target.read_bytes()).hexdigest()
+                except Exception:
+                    pass
+
+            match = repo_hashes.get(old_hash) if old_hash else None
+            if match and str(match) != entry_src(entry):
+                # rename detected: content moved to new path in repo
+                old_rel = Path(entry_src(entry)).relative_to(repo)
+                new_rel = match.relative_to(repo)
+                print(f"[RENAME] {old_rel} -> {new_rel}  (same content)")
+            # prune: delete broken symlink, clean state
             dst_path.unlink()
             print(f"[PRUNE] {dst_path}")
             removed += 1
-            state.pop(dst, None)
 
     return removed
 
@@ -226,9 +278,10 @@ def rollback(repo, snapshot_name):
         if dst_p.exists() and dst_p.is_symlink():
             dst_p.unlink()
 
-    # restore snapshot
-    for dst, src in target_state.items():
+    # restore snapshot (handle both old string and new dict format)
+    for dst, entry in target_state.items():
         dst_p = Path(dst)
+        src = entry if isinstance(entry, str) else entry["src"]
         src_p = Path(src)
 
         dst_p.parent.mkdir(parents=True, exist_ok=True)

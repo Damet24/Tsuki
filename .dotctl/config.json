@@ -3,8 +3,17 @@
   "profiles": {
     "default": {
       "include": [],
-      "ignore": [".git", ".dotctl", "__pycache__"],
-      "exclude_patterns": ["*.pyc", "*.pyo"]
+      "ignore": [
+        ".git",
+        "README.md",
+        ".dotctl",
+        "__pycache__",
+        "tests"
+      ],
+      "exclude_patterns": [
+        "*.pyc",
+        "*.pyo"
+      ]
     }
   }
 }
