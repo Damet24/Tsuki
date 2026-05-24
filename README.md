@@ -165,7 +165,3 @@ The color scheme is defined in:
 - [Catppuccin](https://github.com/catppuccin) — Color palette
 
 ---
-
-<p align="center">
-    <sub>Built with ☕ by <a href="https://github.com/damet">damet</a></sub>
-</p>
