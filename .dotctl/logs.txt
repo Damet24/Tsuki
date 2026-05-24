@@ -461,3 +461,13 @@
 [2026-05-24T17:00:09.326299] BACKUP /home/damet/.config/waybar/minimal/style.css -> /home/damet/.config/waybar/minimal/style.css.bak
 [2026-05-24T17:00:09.326399] LINK /home/damet/.config/waybar/minimal/style.css -> /home/damet/Development/tsuki/.config/waybar/minimal/style.css
 [2026-05-24T17:00:09.361773] SYNC end
+[2026-05-24T17:11:38.502520] SYNC start profile=default
+[2026-05-24T17:11:38.546704] LINK /home/damet/.config/hypr/keybindings/init.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/init.lua
+[2026-05-24T17:11:38.546985] LINK /home/damet/.config/hypr/keybindings/launchers.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/launchers.lua
+[2026-05-24T17:11:38.547249] LINK /home/damet/.config/hypr/keybindings/window.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/window.lua
+[2026-05-24T17:11:38.547493] LINK /home/damet/.config/hypr/keybindings/navigation.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/navigation.lua
+[2026-05-24T17:11:38.547732] LINK /home/damet/.config/hypr/keybindings/workspaces.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/workspaces.lua
+[2026-05-24T17:11:38.547971] LINK /home/damet/.config/hypr/keybindings/system.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/system.lua
+[2026-05-24T17:11:38.548220] LINK /home/damet/.config/hypr/keybindings/mouse.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/mouse.lua
+[2026-05-24T17:11:38.548465] LINK /home/damet/.config/hypr/keybindings/multimedia.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings/multimedia.lua
+[2026-05-24T17:11:38.594647] SYNC end

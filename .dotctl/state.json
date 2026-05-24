@@ -103,10 +103,6 @@
     "src": "/home/damet/Development/tsuki/.config/hypr/programs.lua",
     "hash": "1185a3bd13b1285a08f759c20e3a83efcfe813ee6ce8661f2fd4478b28fff9c6"
   },
-  "/home/damet/.config/hypr/keybindings.lua": {
-    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings.lua",
-    "hash": "a7e0cbd0dab67d983d6a19cef8c202343fe39986dbf8602f55167090d50ba557"
-  },
   "/home/damet/.config/end-rs/config.toml": {
     "src": "/home/damet/Development/tsuki/.config/end-rs/config.toml",
     "hash": "3e539884757325401467e52ca392619315d42a60aa19e1ef0a9ead737116f889"
@@ -826,5 +822,37 @@
   "/home/damet/.config/waybar/minimal/style.css": {
     "src": "/home/damet/Development/tsuki/.config/waybar/minimal/style.css",
     "hash": "2f8eab6070ba3f2a14362ce76e3b2520654cb48c79e237f25d56537cbb8f8d83"
+  },
+  "/home/damet/.config/hypr/keybindings/init.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/init.lua",
+    "hash": "bf04ad586e13e0f7eae458777112df183c92bf974fec5b7af11adbd1d6d7c543"
+  },
+  "/home/damet/.config/hypr/keybindings/launchers.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/launchers.lua",
+    "hash": "5992c500db55754009bd162319852b11a3243015d413d620dd39b790f817d3d1"
+  },
+  "/home/damet/.config/hypr/keybindings/window.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/window.lua",
+    "hash": "daaf5ee868cf2124a738c457da0db4e9340cfa05a00dff4ece4f9b12c3022dce"
+  },
+  "/home/damet/.config/hypr/keybindings/navigation.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/navigation.lua",
+    "hash": "026325638d8f1d075851b1bf51a7739366265f721644ded03b9188a135849d68"
+  },
+  "/home/damet/.config/hypr/keybindings/workspaces.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/workspaces.lua",
+    "hash": "5e9604283a8004e082c5c4d52cfba40a110973fc7549ed9f2b3f463fca22d2ef"
+  },
+  "/home/damet/.config/hypr/keybindings/system.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/system.lua",
+    "hash": "dd17fd15c4905ccd45ef9ff4e6b55100aa6bbd7add961dd71efac3d5fd0a2706"
+  },
+  "/home/damet/.config/hypr/keybindings/mouse.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/mouse.lua",
+    "hash": "eca0dda059220f4c487efbc4cc5aaa2470a8c50fcfb394389b1fd0c3665b6ee5"
+  },
+  "/home/damet/.config/hypr/keybindings/multimedia.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings/multimedia.lua",
+    "hash": "05c857fc05e5e23b2426603d70f4a3b69c1de6a4fcccbc466e46ee4edf1258e0"
   }
 }
