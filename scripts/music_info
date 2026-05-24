@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COVER="/tmp/.music_cover.jpg"
+COVER="~/.config/eww/images/music_cover.png"
 
 ## =========================
 ## STATUS
