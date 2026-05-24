@@ -161,7 +161,9 @@ The color scheme is defined in:
 
 ## Credits
 
-- [Waybar theme V2.5c](https://github.com/HANCORE-linux/waybar-themes) — Inspiration for the Waybar themes
+- [Waybar theme V2.5c](https://github.com/HANCORE-linux/waybar-themes#v25c)
+- [Yoru](https://github.com/raexera/yoru/tree/main)
+- [dotfiles](https://github.com/saimoomedits/dotfiles)
 - [Catppuccin](https://github.com/catppuccin) — Color palette
 
 ---
