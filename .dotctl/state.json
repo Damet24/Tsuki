@@ -1,18 +1,114 @@
 {
-  "/home/damet/.config/eww/launch_left": "/home/damet/Development/tsuki/.config/eww/launch_left",
-  "/home/damet/.config/eww/eww.scss": "/home/damet/Development/tsuki/.config/eww/eww.scss",
-  "/home/damet/.config/eww/eww.yuck": "/home/damet/Development/tsuki/.config/eww/eww.yuck",
-  "/home/damet/.config/eww/end.scss": "/home/damet/Development/tsuki/.config/eww/end.scss",
-  "/home/damet/.config/eww/end.yuck": "/home/damet/Development/tsuki/.config/eww/end.yuck",
-  "/home/damet/.config/eww/_colors.scss": "/home/damet/Development/tsuki/.config/eww/_colors.scss",
-  "/home/damet/.config/eww/bak": "/home/damet/Development/tsuki/.config/eww/bak",
-  "/home/damet/.config/eww/images/arch.png": "/home/damet/Development/tsuki/.config/eww/images/arch.png",
-  "/home/damet/.config/eww/images/minimal.jpg": "/home/damet/Development/tsuki/.config/eww/images/minimal.jpg",
-  "/home/damet/.config/eww/images/yes.png": "/home/damet/Development/tsuki/.config/eww/images/yes.png",
-  "/home/damet/.config/eww/images/profile.png": "/home/damet/Development/tsuki/.config/eww/images/profile.png",
-  "/home/damet/.config/eww/images/music_cover.png": "/home/damet/Development/tsuki/.config/eww/images/music_cover.png",
-  "/home/damet/.config/eww/images/profile.jpeg": "/home/damet/Development/tsuki/.config/eww/images/profile.jpeg",
-  "/home/damet/.config/eww/notifications/notifications.yuck": "/home/damet/Development/tsuki/.config/eww/notifications/notifications.yuck",
-  "/home/damet/.config/eww/notifications/notifications.scss": "/home/damet/Development/tsuki/.config/eww/notifications/notifications.scss",
-  "/home/damet/.config/eww/notifications/scripts/toggle-notifications-history.sh": "/home/damet/Development/tsuki/.config/eww/notifications/scripts/toggle-notifications-history.sh"
+  "/home/damet/.config/eww/launch_left": {
+    "src": "/home/damet/Development/tsuki/.config/eww/launch_left",
+    "hash": null
+  },
+  "/home/damet/.config/eww/eww.scss": {
+    "src": "/home/damet/Development/tsuki/.config/eww/eww.scss",
+    "hash": null
+  },
+  "/home/damet/.config/eww/eww.yuck": {
+    "src": "/home/damet/Development/tsuki/.config/eww/eww.yuck",
+    "hash": null
+  },
+  "/home/damet/.config/eww/end.scss": {
+    "src": "/home/damet/Development/tsuki/.config/eww/end.scss",
+    "hash": null
+  },
+  "/home/damet/.config/eww/end.yuck": {
+    "src": "/home/damet/Development/tsuki/.config/eww/end.yuck",
+    "hash": null
+  },
+  "/home/damet/.config/eww/_colors.scss": {
+    "src": "/home/damet/Development/tsuki/.config/eww/_colors.scss",
+    "hash": null
+  },
+  "/home/damet/.config/eww/bak": {
+    "src": "/home/damet/Development/tsuki/.config/eww/bak",
+    "hash": null
+  },
+  "/home/damet/.config/eww/images/arch.png": {
+    "src": "/home/damet/Development/tsuki/.config/eww/images/arch.png",
+    "hash": null
+  },
+  "/home/damet/.config/eww/images/minimal.jpg": {
+    "src": "/home/damet/Development/tsuki/.config/eww/images/minimal.jpg",
+    "hash": null
+  },
+  "/home/damet/.config/eww/images/yes.png": {
+    "src": "/home/damet/Development/tsuki/.config/eww/images/yes.png",
+    "hash": null
+  },
+  "/home/damet/.config/eww/images/profile.png": {
+    "src": "/home/damet/Development/tsuki/.config/eww/images/profile.png",
+    "hash": null
+  },
+  "/home/damet/.config/eww/images/music_cover.png": {
+    "src": "/home/damet/Development/tsuki/.config/eww/images/music_cover.png",
+    "hash": null
+  },
+  "/home/damet/.config/eww/images/profile.jpeg": {
+    "src": "/home/damet/Development/tsuki/.config/eww/images/profile.jpeg",
+    "hash": null
+  },
+  "/home/damet/.config/eww/notifications/notifications.yuck": {
+    "src": "/home/damet/Development/tsuki/.config/eww/notifications/notifications.yuck",
+    "hash": null
+  },
+  "/home/damet/.config/eww/notifications/notifications.scss": {
+    "src": "/home/damet/Development/tsuki/.config/eww/notifications/notifications.scss",
+    "hash": null
+  },
+  "/home/damet/.config/eww/notifications/scripts/toggle-notifications-history.sh": {
+    "src": "/home/damet/Development/tsuki/.config/eww/notifications/scripts/toggle-notifications-history.sh",
+    "hash": null
+  },
+  "/home/damet/.config/hypr/hyprland.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/hyprland.lua",
+    "hash": "2079239470c32091428b558bb3a07ad1616a97953f1d25b0864e641a03696b57"
+  },
+  "/home/damet/.config/hypr/monitors.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/monitors.lua",
+    "hash": "be0870cab03aaf3556cba314dc8a6177366ad39e2dda4fc7b59fd404f28bd183"
+  },
+  "/home/damet/.config/hypr/autostart.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/autostart.lua",
+    "hash": "24c3d8ec9f425dabb921b6063451c51c7ff07d260a480ec5cc7761f8cc8c38a8"
+  },
+  "/home/damet/.config/hypr/env.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/env.lua",
+    "hash": "8249ebdc9587e475bedd50b89bde81fd59f3cbe36cf8af056ff34fc216e8583b"
+  },
+  "/home/damet/.config/hypr/windowrules.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/windowrules.lua",
+    "hash": "2b138bad78cff01e2779d139163b2c864a17a357c13516d96bdf3090281cdd46"
+  },
+  "/home/damet/.config/hypr/hyprlock.conf": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/hyprlock.conf",
+    "hash": "0f7c96cf85f828f0694b8336c6f4806d0dcfc3e0a0be601b702bd8044dc606ce"
+  },
+  "/home/damet/.config/hypr/mocha.conf": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/mocha.conf",
+    "hash": "4b154dbd96637ee3c0db207dc40d041c712713d788409005541214b838922314"
+  },
+  "/home/damet/.config/hypr/colors.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/colors.lua",
+    "hash": "7198f3f10b5cf8d094d3af38585c2249ebbfc907e9071bffe23fbe43772eb0a9"
+  },
+  "/home/damet/.config/hypr/settings.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/settings.lua",
+    "hash": "09fe103880b76d24d6c399bf4355afe156626a4c213f785c964407ff56048f1e"
+  },
+  "/home/damet/.config/hypr/programs.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/programs.lua",
+    "hash": "1185a3bd13b1285a08f759c20e3a83efcfe813ee6ce8661f2fd4478b28fff9c6"
+  },
+  "/home/damet/.config/hypr/keybindings.lua": {
+    "src": "/home/damet/Development/tsuki/.config/hypr/keybindings.lua",
+    "hash": "a7e0cbd0dab67d983d6a19cef8c202343fe39986dbf8602f55167090d50ba557"
+  },
+  "/home/damet/.config/end-rs/config.toml": {
+    "src": "/home/damet/Development/tsuki/.config/end-rs/config.toml",
+    "hash": "3e539884757325401467e52ca392619315d42a60aa19e1ef0a9ead737116f889"
+  }
 }

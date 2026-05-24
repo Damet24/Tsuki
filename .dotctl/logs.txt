@@ -80,3 +80,22 @@
 [2026-05-24T14:30:06.567489] SYNC end
 [2026-05-24T14:30:10.281935] SYNC start profile=default
 [2026-05-24T14:30:10.289941] SYNC end
+[2026-05-24T14:52:08.464196] SYNC start profile=default
+[2026-05-24T14:52:08.472987] SYNC end
+[2026-05-24T14:55:03.712862] SYNC start profile=default
+[2026-05-24T14:55:03.715267] LINK /home/damet/.config/hypr/hyprland.lua -> /home/damet/Development/tsuki/.config/hypr/hyprland.lua
+[2026-05-24T14:55:03.715462] LINK /home/damet/.config/hypr/monitors.lua -> /home/damet/Development/tsuki/.config/hypr/monitors.lua
+[2026-05-24T14:55:03.715633] LINK /home/damet/.config/hypr/autostart.lua -> /home/damet/Development/tsuki/.config/hypr/autostart.lua
+[2026-05-24T14:55:03.715827] LINK /home/damet/.config/hypr/env.lua -> /home/damet/Development/tsuki/.config/hypr/env.lua
+[2026-05-24T14:55:03.715994] LINK /home/damet/.config/hypr/windowrules.lua -> /home/damet/Development/tsuki/.config/hypr/windowrules.lua
+[2026-05-24T14:55:03.716206] LINK /home/damet/.config/hypr/hyprlock.conf -> /home/damet/Development/tsuki/.config/hypr/hyprlock.conf
+[2026-05-24T14:55:03.716381] LINK /home/damet/.config/hypr/mocha.conf -> /home/damet/Development/tsuki/.config/hypr/mocha.conf
+[2026-05-24T14:55:03.716548] LINK /home/damet/.config/hypr/colors.lua -> /home/damet/Development/tsuki/.config/hypr/colors.lua
+[2026-05-24T14:55:03.716715] LINK /home/damet/.config/hypr/settings.lua -> /home/damet/Development/tsuki/.config/hypr/settings.lua
+[2026-05-24T14:55:03.716874] LINK /home/damet/.config/hypr/programs.lua -> /home/damet/Development/tsuki/.config/hypr/programs.lua
+[2026-05-24T14:55:03.717122] LINK /home/damet/.config/hypr/keybindings.lua -> /home/damet/Development/tsuki/.config/hypr/keybindings.lua
+[2026-05-24T14:55:03.723550] SYNC end
+[2026-05-24T14:59:54.811410] SYNC start profile=default
+[2026-05-24T14:59:54.815726] BACKUP /home/damet/.config/end-rs/config.toml -> /home/damet/.config/end-rs/config.toml.bak
+[2026-05-24T14:59:54.815896] LINK /home/damet/.config/end-rs/config.toml -> /home/damet/Development/tsuki/.config/end-rs/config.toml
+[2026-05-24T14:59:54.821750] SYNC end
