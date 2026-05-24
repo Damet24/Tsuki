@@ -1,0 +1,7 @@
+require("keybindings.launchers")
+require("keybindings.window")
+require("keybindings.navigation")
+require("keybindings.workspaces")
+require("keybindings.system")
+require("keybindings.mouse")
+require("keybindings.multimedia")
