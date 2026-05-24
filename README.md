@@ -10,3 +10,12 @@ dependencies
 [Hyprlock](https://github.com/hyprwm/hyprlock)
 [Terminal](https://github.com/kovidgoyal/kitty)
 [rofi](https://github.com/davatorium/rofi)
+
+
+credits 
+[waybar theme: V2.5c](https://github.com/HANCORE-linux/waybar-themes)
+
+
+cosas que uso
+
+nmcli

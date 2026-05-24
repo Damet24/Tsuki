@@ -1,0 +1,153 @@
+.end-default-notification-box-low {
+  background-color: #080808;
+  padding: 12px;
+  padding-left: 8px;
+  margin: 12px;
+  border-radius: 10px;
+  border: 1px dashed #80a0ff;
+}
+
+.end-default-notification-box-normal {
+  background-color: #080808;
+  padding: 12px;
+  padding-left: 8px;
+  margin: 12px;
+  border-radius: 10px;
+  border: 2px solid $border-primary;
+}
+
+.end-default-notification-box-critical {
+  background-color: #080808;
+  padding: 12px;
+  padding-left: 8px;
+  margin: 12px;
+  border-radius: 10px;
+  border: 2px solid #ff5d5d;
+}
+
+.end-default-notification-title-bar {
+  background-color: #080808;
+  margin: 3px;
+  border-bottom: 1px solid #080808;
+}
+
+.end-default-notification-appicon {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.end-default-notification-appname {
+  color: #080808;
+  margin-right: 12px;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.end-default-notification-body-box {
+  margin-top: 12px;
+}
+
+.notification-text {
+  color: #080808;
+  font-family: 'JetBrainsMono Nerd Font';
+}
+
+.notification-title {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.notification-content {
+  font-size: .8em;
+}
+
+.end-notification-buttons {
+  margin-top: 20px;
+}
+
+.end-notification-button {
+  background-color: #080808;
+  color: #080808;
+  padding: 8px;
+  border-radius: 10px;
+  margin-right: 12px;
+  border: 1px solid #080808;
+}
+
+.end-notification-reply {
+  background-color: #080808;
+  color: #080808;
+  padding: 8px;
+  border-radius: 10px;
+  margin-right: 12px;
+  border: 1px solid #080808;
+}
+
+.end-notification-reply:hover:focus {
+  background-color: #080808;
+  color: #080808;
+  padding: 8px;
+  border-radius: 10px;
+  margin-right: 12px;
+  border: 1px solid #080808;
+}
+
+.end-notification-button:hover {
+  background-color: #080808;
+  color: #080808;
+  padding: 8px;
+  border-radius: 10px;
+  margin-right: 12px;
+  border: 1px solid #080808;
+}
+
+.end-history-frame {
+  background-color: #080808;
+  padding: 12px;
+  padding-left: 8px;
+  border-radius: 10px;
+}
+
+.end-history-box {
+  background-color: #080808;
+  padding: 12px;
+  margin: 5.5px;
+  border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid $shadow-primary;
+}
+
+.end-history-title-bar {
+  background-color: #080808;
+  margin: 1px;
+  border-bottom: 1px solid #080808;
+}
+
+.end-history-appicon {
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.end-history-appname {
+  color: #080808;
+  margin-right: 5px;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.end-history-body-box {
+  margin-top: 3px;
+}
+
+.content-box {
+  margin-left: 12px;
+}
+
+.notif-container {
+  background-color: rgba($bg-secondary, 0.1);
+  border-radius: 20px;
+  padding: 12px;
+  border: 1px solid $shadow-primary;
+}

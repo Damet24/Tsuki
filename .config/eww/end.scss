@@ -1,0 +1,183 @@
+@import "colors";
+
+.end-default-notification-box-low,
+.end-default-notification-box-normal,
+.end-default-notification-box-critical {
+  background-color: $bg;
+
+  padding: 10px 12px;
+  margin: 4px 0;
+
+  border-radius: 8px;
+  border: none;
+}
+
+.end-default-notification-appicon {
+  margin-right: 8px;
+}
+
+.end-default-notification-appname {
+  color: $white;
+  margin-right: 12px;
+  font-family: 'HackNerdFont';
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.end-default-notification-body-box {
+  margin-top: 6px;
+}
+
+.end-default-notification-title-bar {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-text {
+  color: $white;
+  font-family: 'HackNerdFont';
+}
+
+.notification-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.notification-content {
+  font-size: 0.78em;
+}
+
+.content-box {
+  margin-left: 6px;
+}
+
+.end-notification-buttons {
+  margin-top: 8px;
+}
+
+.end-notification-button {
+  background-color: transparent;
+  color: $blue;
+
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  font-size: 0.75em;
+
+  border: none;
+}
+
+.end-notification-button:hover {
+  background-color: rgba(122, 162, 247, 0.12);
+}
+
+.end-notification-reply {
+  background-color: $accent;
+  color: $white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+  font-size: 0.85em;
+}
+
+.end-notification-reply:hover:focus {
+  background-color: $comment;
+  color: $white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+
+.end-history-box {
+  background-color: $muted;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 4px 0;
+  border: none;
+}
+
+.end-history-title-bar {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.end-history-appicon {
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.end-history-appname {
+  color: $white;
+  margin-right: 5px;
+  font-family: 'HackNerdFont';
+  font-weight: bold;
+  font-size: 9px;
+}
+
+.end-history-body-box {
+  margin-top: 4px;
+}
+
+.end-notification-frame {
+  background-color: transparent;
+  padding: 0;
+}
+
+.end-history-header {
+  padding: 2px 8px;
+  margin-bottom: 4px;
+  min-height: 28px;
+}
+
+.end-history-header-icon {
+  color: $white;
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.end-history-header-title {
+  color: $white;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.end-history-header-btn {
+  background-color: transparent;
+  color: $blue;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  border: none;
+  margin-left: 6px;
+  min-height: 28px;
+  min-width: 28px;
+}
+
+.end-history-header-btn:hover {
+  background-color: rgba(122, 162, 247, 0.12);
+}
+
+.end-history-close-btn {
+  background-color: transparent;
+  color: $comment;
+  padding: 0;
+  border-radius: 4px;
+  font-size: 12px;
+  border: none;
+  min-height: 18px;
+  min-width: 18px;
+}
+
+.end-history-close-btn:hover {
+  color: $red;
+  background-color: rgba(247, 118, 142, 0.1);
+}
+
+.end-history-frame {
+  background-color: $bg;
+  border-radius: 8px;
+  padding: 8px;
+}

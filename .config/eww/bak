@@ -1,0 +1,356 @@
+(defvar IMAGE "~/.config/eww/images/profile.jpeg")
+(defvar volume_visible false)
+(defvar mic_visible false)
+
+(defpoll username :interval "48h"  "whoami")
+(defpoll environment :interval "48h" "echo $XDG_CURRENT_DESKTOP")
+
+(defpoll uptime :interval "50s" "uptime -p | sed -e 's/up //;s/ hours,/h/;s/ hour,/h/;s/ minutes/m/;s/ minute/m/'")
+
+(defpoll time_hour :interval "5m" "date +\"%H\"")
+(defpoll time_min :interval "5s" "date +\"%M\"")
+(defpoll time_year :interval "5m" "date +\"%C\"")
+(defpoll time_mer :interval "12h" "date +\"%p\"")
+(defpoll time_day :interval "30m" "date +\"%d\"")
+(defpoll time_month :interval "48h" "date +\%m")
+(defpoll time_day_name :interval "30m" "date +\"%A\"")
+(defpoll time_month_name :interval "48h" "date +\%B")
+
+(defpoll song :interval "1s"  "~/.config/eww/scripts/music_info --song")
+(defpoll song_artist :interval "1s"  "~/.config/eww/scripts/music_info --artist")
+(defpoll song_status :interval "1s"  "~/.config/eww/scripts/music_info --status")
+(defpoll loop_status :interval "1s"  "~/.config/eww/scripts/music_info --loop_ic")
+(defpoll song_time :interval "1s"  "~/.config/eww/scripts/music_info --time")
+(defpoll song_cover :interval "1s"  "~/.config/eww/scripts/get_cover.sh")
+
+(defpoll battery :interval "15s" "./scripts/battery --bat")
+(defpoll memory :interval "15s" "scripts/memory")
+(defpoll cpu :interval "17s" "scripts/cpu")
+
+(defpoll wifi_icon :interval "15s" "./scripts/wifi wifi")
+(defpoll wifi_col :interval "15s" "scripts/wifi wifi_col")
+(defpoll wifi_bg :interval "17s" "scripts/wifi wifi_bg")
+
+(defpoll notif_icon :interval "15s" "./scripts/notifs notifs")
+(defpoll notif_col :interval "15s" "scripts/notifs notifs_col")
+(defpoll notif_bg :interval "17s" "scripts/notifs notifs_bg")
+
+
+(defpoll vol_icon :interval "15s" "./scripts/vol vol")
+(defpoll vol_col :interval "15s" "scripts/vol vol_col")
+(defpoll vol_bg :interval "17s" "scripts/vol vol_bg")
+
+(defpoll volume_percent
+  :interval "0.1s"
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}'")
+
+(defpoll volume_muted
+  :interval "0.1s"
+"wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo true || echo false")
+
+(defpoll mic_percent
+  :interval "6s"
+  "sh -c \"pamixer --source \\$(pamixer --list-sources | grep 'alsa_input.*HyperX' | awk '{print \\$1}') --get-volume\"")
+
+
+(defwindow main
+  :geometry (geometry
+    :anchor "center bottom"
+    :width "450px"
+    :height "520px"
+    :x "0px"
+  :y "12px")
+  :stacking "fg"
+  :hexpand "false"
+  :vexpand "false"
+  (main))
+
+(defwindow music_control
+  :geometry (geometry
+    :anchor "center bottom"
+    :width "380px"
+    :height "520px"
+    :x "0px"
+  :y "12px")
+  :stacking "fg"
+  (music))
+
+(defwindow volume_osd
+  :monitor 0
+  :geometry (geometry
+    :anchor "top center"
+    :x "0px"
+    :y "12px"
+    :width "220px"
+  :height "45px")
+  :stacking "overlay"
+  :focusable "ondemand"
+  :exclusive false
+  (volume_osd_widget))
+
+(defwidget main []
+  (box
+    :class "bg"
+    :orientation "v"
+    :space-evenly "false"
+    
+    (box
+      :class "main_container"
+      :orientation "v"
+      :space-evenly "false"
+      :spacing 15
+      
+      ;; fila superior
+      (box
+        :orientation "h"
+        :spacing 15
+        :space-evenly "true"
+        :class "container"
+        
+        (profile)
+        (porwerbuttons))
+      
+      (box
+        :orientation "v"
+        :spacing 15
+        :space-evenly "true"
+        :class "container"
+        
+        (audio))
+      
+      ;; fila secundaria
+      (box
+        :orientation "v"
+        :spacing 15
+        :space-evenly "true"
+        :class "container"
+        
+        (box
+          :class "bg_container"
+        ))
+    )
+  ))
+
+(defwidget profile []
+  (box
+    :orientation "h"
+    :spacing 15
+    :space-evenly "false"
+    
+    (box
+      :vexpand "false"
+      :valign "center"
+      :halign "center"
+      :class "profile_picture"
+    )
+    
+    (box
+      :orientation "v"
+      :halign "start"
+      :valign "center"
+      
+      (label
+        :class "profile_name"
+        :text username
+        :halign "start"
+      )
+      (label
+        :class "profile_environment"
+        :text "@${environment}"
+        :halign "start"
+      ))))
+
+(defwidget porwerbuttons []
+  (box
+    :class "powerbuttons_container"
+    :orientation "h"
+    :spacing 15
+    :valign "center"
+    :halign "end"
+    
+    (button
+      :class "powermenu_btn"
+      :onclick "hyprlock" "󰍁"
+      
+    )
+    (button
+      :class "powermenu_btn"
+      :onclick "" "󰐥"
+    )))
+
+
+(defwidget time []
+  (box :class "win"
+    :orientation "v"
+    :space-evenly "false"
+    :vexpand "false"
+    :hexpand "false"
+    :spacing 0
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      :vexpand "false"
+      :halign "center"
+      :hexpand "false"
+      :spacing 0
+      (label :class "hour_class"
+        :valign "start"
+        :wrap "true"
+        :limit-width 25
+      :text time_hour)
+      (label :class "minute_class"
+        :valign "start"
+        :halign "start"
+        :wrap "true"
+        :limit-width 25
+      :text time_min))
+    (box :orientation "h"
+      :spacing 0
+      :space-evenly "false"
+      :halign "center"
+      :vexpand "false" :hexpand "false"
+      (label :class "time_day_class_n"
+        :valign "center"
+      :text time_day)
+      (label :class "day_class_n"
+        :valign "center"
+      :text time_day_name)
+      (label :class "time_sep_class"
+        :valign "center"
+      :text ", ")
+      (label :class "month_class_n"
+        :valign "center"
+      :text time_month_name))))
+
+(defwidget music []
+  (box
+    :class ""
+    :orientation "v"
+    :space-evenly "false"
+    :hexpand "false"
+    :vexpand "false"
+    :spacing 0
+    
+    ;; COVER
+    (box
+      :class "music_top"
+      :style "background-image: url('${song_cover}');"
+      :orientation "v"
+      :valign "end"
+      :halign "fill"
+      :space-evenly "false"
+      
+      (label
+        :class "song_title"
+        :limit-width 30
+      :text song)
+      
+      (label
+        :class "song_artist"
+        :limit-width 30
+      :text song_artist)
+    )
+    
+    ;; CONTROLS
+    (box
+      :class "controls_row"
+      :orientation "v"
+      :spacing 0
+      :halign "fill"
+      :space-evenly "false"
+      
+      (box
+        :class "button_container"
+        :orientation "h"
+        :valigh "center"
+        :halign "center"
+        :spacing 5
+        :space-evenly "false"
+        
+        (button :class "control_btn" :onclick "~/.config/eww/scripts/music_info --prev" "󰒮")
+        (button :class "control_btn" :onclick "~/.config/eww/scripts/music_info --toggle" song_status)
+        (button :class "control_btn" :onclick "~/.config/eww/scripts/music_info --next" "󰒭")
+        (button :class "control_btn" :onclick "~/.config/eww/scripts/music_info --loop" loop_status))
+      
+      (scale
+        :class "music_progress"
+        :orientation "h"
+        :min 0
+        :max 100
+        :value song_time
+      :value-pos "right")
+    )))
+
+
+(defwidget audio []
+  (box
+    :class "audio_container"
+    :orientation "v"
+    :spacing 15
+    
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      
+      (scale
+        :flipped "false"
+        :orientation "h"
+        :min 0
+        :max 101
+        :value volume_percent
+        :onchange "pamixer --set-volume {}"
+      )
+      (label
+        :text "󰕾"
+        :class "vol_icon"
+      ))
+    
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      
+      (scale
+        :flipped "false"
+        :orientation "h"
+        :min 0
+        :max 101
+        :value mic_percent
+        :active "true"
+      )
+      (label
+        :text "󰍬"
+        :class "mic_icon"
+      ))))
+
+(defwidget volume_osd_widget []
+  (box
+    :class "osd"
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 15
+    :active "false"
+    :visible volume_visible
+    
+    (label
+      :class "osd_icon"
+      :spacing 0
+    :text {volume_muted == "true" ? "󰝟" : "󰕾"})
+    
+    (scale
+      :class "osd_scale"
+      :spacing 0
+      :orientation "h"
+      :hexpand "true"
+      :min 0
+      :max 100
+      :value volume_percent
+    :active false)
+    
+    ;;(label
+      ;;  :class "osd_label"
+      ;;  :spacing 0
+    ;;  :text "${volume_percent}%")
+  ))
+
+(include "end.yuck")
+
