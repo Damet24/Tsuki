@@ -65,9 +65,8 @@ Make sure you have the following tools installed:
 - [Neovim + AstroVim](https://astronvim.com/) — Editor
 - [nmcli](https://networkmanager.dev/) — Network management
 
-### dotctl
 
-This repo uses `dotctl`, a dotfiles manager written in Python. To sync the files to your `$HOME`:
+Use the included `scripts/sync` to symlink the config files to your `$HOME`:
 
 ```bash
 git clone https://github.com/youruser/tsuki ~/tsuki
@@ -103,7 +102,7 @@ python3 scripts/sync sync
 
 ## Usage
 
-### dotctl
+### sync script
 
 | Command | Description |
 |---------|-------------|
