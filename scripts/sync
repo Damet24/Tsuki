@@ -9,6 +9,21 @@ from pathlib import Path
 from datetime import datetime
 import argparse
 
+class C:
+    RESET = "\033[0m"
+    BOLD = "\033[1m"
+    RED = "\033[31m"
+    GREEN = "\033[32m"
+    YELLOW = "\033[33m"
+    BLUE = "\033[34m"
+    MAGENTA = "\033[35m"
+    CYAN = "\033[36m"
+    GRAY = "\033[90m"
+
+    @staticmethod
+    def tag(name, color):
+        return f"{color}[{name}]{C.RESET}"
+
 HOME = Path.home()
 GLOBAL_IGNORE = {".git", ".dotctl", "__pycache__"}
 
@@ -147,11 +162,12 @@ def link(src, dst, state, repo, force=False, dry_run=False):
     # archivo real existe
     if dst.exists() and not dst.is_symlink():
         if not force:
-            print(f"[PLAN] SKIP {dst}" if dry_run else f"[SKIP] {dst}")
+            tag = f"{C.tag('PLAN', C.BLUE)} SKIP" if dry_run else f"{C.tag('SKIP', C.YELLOW)}"
+            print(f"{tag} {dst}")
             return
 
         if dry_run:
-            print(f"[PLAN] BACKUP {dst} -> {dst}.bak / LINK {dst} -> {src}")
+            print(f"{C.tag('PLAN', C.BLUE)} BACKUP {dst} -> {dst}.bak / LINK {dst} -> {src}")
             return
 
         backup = dst.with_name(dst.name + ".bak")
@@ -161,11 +177,11 @@ def link(src, dst, state, repo, force=False, dry_run=False):
             n += 1
         dst.rename(backup)
         log(repo, f"BACKUP {dst} -> {backup}")
-        print(f"[BACKUP] {dst} -> {backup}")
+        print(f"{C.tag('BACKUP', C.CYAN)} {dst} -> {backup}")
 
     # symlink (nuevo o reemplazo)
     if dry_run:
-        print(f"[PLAN] LINK {dst} -> {src}")
+        print(f"{C.tag('PLAN', C.BLUE)} LINK {dst} -> {src}")
         return
 
     dst.parent.mkdir(parents=True, exist_ok=True)
@@ -178,7 +194,7 @@ def link(src, dst, state, repo, force=False, dry_run=False):
     state[str(dst)] = {"src": str(src), "hash": file_hash}
 
     log(repo, f"LINK {dst} -> {src}")
-    print(f"[LINK] {dst}")
+    print(f"{C.tag('LINK', C.GREEN)} {dst}")
 
 
 # =========================
@@ -237,10 +253,10 @@ def prune(repo, state):
                 # rename detected: content moved to new path in repo
                 old_rel = Path(entry_src(entry)).relative_to(repo)
                 new_rel = match.relative_to(repo)
-                print(f"[RENAME] {old_rel} -> {new_rel}  (same content)")
+                print(f"{C.tag('RENAME', C.MAGENTA)} {old_rel} -> {new_rel}  (same content)")
             # prune: delete broken symlink, clean state
             dst_path.unlink()
-            print(f"[PRUNE] {dst_path}")
+            print(f"{C.tag('PRUNE', C.RED)} {dst_path}")
             removed += 1
 
     return removed
@@ -259,14 +275,14 @@ def snapshot(repo):
 
     snap_file.write_text(json.dumps(state, indent=2))
     log(repo, f"SNAPSHOT {snap_file}")
-    print(f"[SNAPSHOT] {snap_file}")
+    print(f"{C.tag('SNAPSHOT', C.GREEN)} {snap_file}")
 
 
 def rollback(repo, snapshot_name):
     snap_file = dotctl_dir(repo) / "snapshots" / snapshot_name
 
     if not snap_file.exists():
-        print("snapshot not found")
+        print(f"{C.RED}snapshot not found{C.RESET}")
         return
 
     target_state = json.loads(snap_file.read_text())
@@ -293,7 +309,7 @@ def rollback(repo, snapshot_name):
 
     save_state(repo, target_state)
     log(repo, f"ROLLBACK {snapshot_name}")
-    print(f"[ROLLBACK] {snapshot_name}")
+    print(f"{C.tag('ROLLBACK', C.MAGENTA)} {snapshot_name}")
 
 
 # =========================
@@ -305,9 +321,9 @@ def sync(repo, force=False, dry_run=False):
     state = load_state(repo)
 
     if dry_run:
-        print(f"SYNC --dry-run profile: {cfg['profile']}")
+        print(f"{C.BOLD}{C.BLUE}SYNC --dry-run{C.RESET} profile: {cfg['profile']}")
     else:
-        print(f"SYNC profile: {cfg['profile']}")
+        print(f"{C.BOLD}{C.BLUE}SYNC{C.RESET} profile: {cfg['profile']}")
         log(repo, f"SYNC start profile={cfg['profile']}")
 
     for path in repo.rglob("*"):
@@ -326,7 +342,7 @@ def sync(repo, force=False, dry_run=False):
         link(path, dst, state, repo, force=force, dry_run=dry_run)
 
     if dry_run:
-        print("\n[DRY-RUN] no se realizaron cambios. usa sync sin --dry-run para aplicar.")
+        print(f"\n{C.tag('DRY-RUN', C.YELLOW)} no se realizaron cambios. usa sync sin --dry-run para aplicar.")
         return
 
     prune(repo, state)
@@ -358,7 +374,7 @@ def diff(repo):
         dst = HOME / rel
 
         if not dst.exists():
-            print(f"[MISSING] {rel}")
+            print(f"{C.tag('MISSING', C.RED)} {rel}")
             changes += 1
             continue
 
@@ -366,7 +382,7 @@ def diff(repo):
             continue
 
         if dst.is_symlink():
-            print(f"[WRONG]   {rel} -> {dst.resolve()} (expected {path})")
+            print(f"{C.tag('WRONG', C.RED)}   {rel} -> {dst.resolve()} (expected {path})")
             changes += 1
             continue
 
@@ -374,14 +390,14 @@ def diff(repo):
             src_text = path.read_text(encoding="utf-8", errors="replace")
             dst_text = dst.read_text(encoding="utf-8", errors="replace")
         except Exception:
-            print(f"[BINARY]  {rel}")
+            print(f"{C.tag('BINARY', C.YELLOW)}  {rel}")
             changes += 1
             continue
 
         if src_text == dst_text:
             continue
 
-        print(f"[DIFF]    {rel}")
+        print(f"{C.tag('DIFF', C.CYAN)}    {rel}")
 
         src_lines = src_text.splitlines(keepends=True)
         dst_lines = dst_text.splitlines(keepends=True)
@@ -398,9 +414,9 @@ def diff(repo):
         changes += 1
 
     if changes == 0:
-        print("Everything is up to date.")
+        print(f"{C.GREEN}Everything is up to date.{C.RESET}")
     else:
-        print(f"\n{changes} file(s) differ.")
+        print(f"\n{C.RED}{changes} file(s) differ.{C.RESET}")
 
 
 # =========================
@@ -409,7 +425,7 @@ def diff(repo):
 def init(repo):
     dotctl = dotctl_dir(repo)
     if dotctl.exists():
-        print(f"[INIT] ya existe {dotctl}")
+        print(f"{C.tag('INIT', C.GREEN)} ya existe {dotctl}")
         return
 
     dotctl.mkdir(parents=True)
@@ -428,7 +444,7 @@ def init(repo):
     (dotctl / "state.json").write_text("{}\n")
     (dotctl / "logs.txt").write_text("")
 
-    print(f"[INIT] repo inicializado en {repo}")
+    print(f"{C.tag('INIT', C.GREEN)} repo inicializado en {repo}")
 
 
 # =========================
@@ -436,8 +452,8 @@ def init(repo):
 # =========================
 def status(repo):
     cfg = load_config(repo)
-    print("profile:", cfg["profile"])
-    print("state:", len(load_state(repo)))
+    print(f"{C.CYAN}profile:{C.RESET} {cfg['profile']}")
+    print(f"{C.CYAN}state:{C.RESET} {len(load_state(repo))}")
 
 
 # =========================
@@ -451,7 +467,7 @@ def resolve_repo_or_exit(args):
     if (cwd / ".dotctl").exists():
         return cwd
 
-    print("error: repo de dotfiles no encontrado. usa -r <ruta> o ejecuta el script dentro del repo", file=sys.stderr)
+    print(f"{C.RED}error:{C.RESET} repo de dotfiles no encontrado. usa -r <ruta> o ejecuta el script dentro del repo", file=sys.stderr)
     sys.exit(1)
 
 
