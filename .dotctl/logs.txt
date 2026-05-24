@@ -447,3 +447,17 @@
 [2026-05-24T15:31:00.141810] LINK /home/damet/.config/kitty/kitty-themes/idleToes.conf -> /home/damet/Development/tsuki/.config/kitty/kitty-themes/idleToes.conf
 [2026-05-24T15:31:00.141978] LINK /home/damet/.config/kitty/kitty-themes/snazzy.conf -> /home/damet/Development/tsuki/.config/kitty/kitty-themes/snazzy.conf
 [2026-05-24T15:31:00.174378] SYNC end
+[2026-05-24T17:00:09.319580] SYNC start profile=default
+[2026-05-24T17:00:09.320223] BACKUP /home/damet/.zshrc -> /home/damet/.zshrc.bak
+[2026-05-24T17:00:09.320475] LINK /home/damet/.zshrc -> /home/damet/Development/tsuki/.zshrc
+[2026-05-24T17:00:09.320679] LINK /home/damet/starship.toml -> /home/damet/Development/tsuki/starship.toml
+[2026-05-24T17:00:09.322419] LINK /home/damet/scripts/launch_waybar -> /home/damet/Development/tsuki/scripts/launch_waybar
+[2026-05-24T17:00:09.325027] BACKUP /home/damet/.config/waybar/ryu/style.css -> /home/damet/.config/waybar/ryu/style.css.bak
+[2026-05-24T17:00:09.325149] LINK /home/damet/.config/waybar/ryu/style.css -> /home/damet/Development/tsuki/.config/waybar/ryu/style.css
+[2026-05-24T17:00:09.325682] BACKUP /home/damet/.config/waybar/ryu/config.jsonc -> /home/damet/.config/waybar/ryu/config.jsonc.bak
+[2026-05-24T17:00:09.325802] LINK /home/damet/.config/waybar/ryu/config.jsonc -> /home/damet/Development/tsuki/.config/waybar/ryu/config.jsonc
+[2026-05-24T17:00:09.326016] BACKUP /home/damet/.config/waybar/minimal/config.jsonc -> /home/damet/.config/waybar/minimal/config.jsonc.bak
+[2026-05-24T17:00:09.326131] LINK /home/damet/.config/waybar/minimal/config.jsonc -> /home/damet/Development/tsuki/.config/waybar/minimal/config.jsonc
+[2026-05-24T17:00:09.326299] BACKUP /home/damet/.config/waybar/minimal/style.css -> /home/damet/.config/waybar/minimal/style.css.bak
+[2026-05-24T17:00:09.326399] LINK /home/damet/.config/waybar/minimal/style.css -> /home/damet/Development/tsuki/.config/waybar/minimal/style.css
+[2026-05-24T17:00:09.361773] SYNC end

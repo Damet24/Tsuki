@@ -798,5 +798,33 @@
   "/home/damet/.config/kitty/kitty-themes/snazzy.conf": {
     "src": "/home/damet/Development/tsuki/.config/kitty/kitty-themes/snazzy.conf",
     "hash": "e47bcf63df139c64c2f9a4232bcb488cd0d0e37e36217a1f1fb061bdfc5d8f11"
+  },
+  "/home/damet/.zshrc": {
+    "src": "/home/damet/Development/tsuki/.zshrc",
+    "hash": "9da4be1dd84fdecc91a03dc9f73cc814ca81650163f1607217933616f613e99c"
+  },
+  "/home/damet/starship.toml": {
+    "src": "/home/damet/Development/tsuki/starship.toml",
+    "hash": "c4f1789ba298688ef0ed5ca161fc787b3619c5fda55ff2badae7772f2a073321"
+  },
+  "/home/damet/scripts/launch_waybar": {
+    "src": "/home/damet/Development/tsuki/scripts/launch_waybar",
+    "hash": "737262fcc3060efce212eec461ff8722e8e2bcf0af53bc9a87adc95fadc2c629"
+  },
+  "/home/damet/.config/waybar/ryu/style.css": {
+    "src": "/home/damet/Development/tsuki/.config/waybar/ryu/style.css",
+    "hash": "df7dabc17adb72836f881c1828de6b814d66b06d72f7f3d4ad6242e5edae71a3"
+  },
+  "/home/damet/.config/waybar/ryu/config.jsonc": {
+    "src": "/home/damet/Development/tsuki/.config/waybar/ryu/config.jsonc",
+    "hash": "937f58881475c242215d7bfe79da95c0c6eff6e9106f18be09d8001ea46846ac"
+  },
+  "/home/damet/.config/waybar/minimal/config.jsonc": {
+    "src": "/home/damet/Development/tsuki/.config/waybar/minimal/config.jsonc",
+    "hash": "507bd1945f73bd308b120f690f4966b556d7c748c5db6b15c49c79930c790884"
+  },
+  "/home/damet/.config/waybar/minimal/style.css": {
+    "src": "/home/damet/Development/tsuki/.config/waybar/minimal/style.css",
+    "hash": "2f8eab6070ba3f2a14362ce76e3b2520654cb48c79e237f25d56537cbb8f8d83"
   }
 }
