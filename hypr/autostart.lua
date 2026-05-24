@@ -1,0 +1,8 @@
+hl.on("hyprland.start", function()
+	hl.exec_cmd("waybar -c ~/Development/dotfiles/waybar/config.jsonc -s ~/Development/dotfiles/waybar/style.css")
+	hl.exec_cmd("~/.local/bin/awww-daemon")
+	hl.exec_cmd("~/.local/bin/awww img ~/Pictures/Wallpapers/samurai_original.png")
+	hl.exec_cmd("~/.local/bin/eww daemon")
+	hl.exec_cmd("~/.local/bin/eww open volume_osd --screen 0")
+	hl.exec_cmd("~/.local/bin/end-rs daemon")
+end)

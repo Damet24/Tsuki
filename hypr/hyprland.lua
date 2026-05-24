@@ -1,0 +1,8 @@
+require("env")
+require("colors")
+require("programs")
+require("monitors")
+require("autostart")
+require("settings")
+require("keybindings")
+require("windowrules")
