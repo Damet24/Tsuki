@@ -1,5 +1,16 @@
-## Tsuki
 
+<h1 align="center">
+    <div align="center">
+        <img src=".github/images/tsuki.png" width=140>
+    </div>
+</h1>
+
+
+<div align="center">
+    The <b>Arch Linux & AwesomeWM</b> dotfiles!<br>
+</div>
+
+---
 
 dependencies
 
