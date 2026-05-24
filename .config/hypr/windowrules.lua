@@ -35,3 +35,54 @@ hl.layer_rule({
 	match = { namespace = "system_power" },
 	blur = true,
 })
+
+-- =====================================================
+-- ✔️ OSD (Eww volume / system overlays) click-through
+-- =====================================================
+hl.layer_rule({
+	name = "osd-exclusive-off",
+	match = { namespace = "^osd$" },
+	ignore_alpha = 0.0,
+})
+
+-- =====================================================
+-- ✔️ Browser popups centrados y flotantes
+-- =====================================================
+hl.window_rule({
+	name = "bitwarden-auth",
+	match = {
+		class = "firefox|chromium|brave",
+		initial_title = ".*Bitwarden.*|.*login.*|.*authorize.*",
+	},
+	float = true,
+	center = true,
+})
+
+hl.window_rule({
+	name = "file-picker-floating",
+	match = {
+		class = "xdg-desktop-portal-gtk|xdg-desktop-portal-kde|xdg-desktop-portal-gnome",
+	},
+	float = true,
+	center = true,
+})
+
+hl.window_rule({
+	name = "file-picker-title-fallback",
+	match = {
+		title = "Open File|Save File|Select File|Choose File",
+	},
+	float = true,
+	center = true,
+})
+
+hl.window_rule({
+	name = "bitwarden-popup",
+	match = {
+		class = "brave-nngceckbapebfimnlniiiahkandclblb-Default",
+		initial_title = "_crx_nngceckbapebfimnlniiiahkandclblb",
+	},
+	float = true,
+	center = true,
+	size = { "monitor_w * 0.35", "monitor_h * 0.35" },
+})
