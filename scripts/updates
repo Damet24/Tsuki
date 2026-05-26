@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+updates=$(dnf check-update -q 2>/dev/null | \
+          grep -vE '^(Last metadata expiration|Obsoleting|Security|$)' | \
+          wc -l)
+
+if [ "$updates" -eq 0 ]; then
+    echo ""
+else
+    echo " $updates"
+fi

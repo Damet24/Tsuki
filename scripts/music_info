@@ -176,4 +176,9 @@ elif [[ "$1" == "--loop" ]]; then
 
 elif [[ "$1" == "--loop_ic" ]]; then
     loop_st
+
+elif [[ "$1" == "--waybar" ]]; then
+    song=$(get_song)
+    artist=$(get_artist)
+    printf '{"text":"%s","tooltip":"%s - %s"}\n' "$song" "$song" "$artist"
 fi
