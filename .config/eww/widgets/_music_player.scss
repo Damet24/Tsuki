@@ -1,0 +1,27 @@
+.music_player_container {
+  @include container;
+
+  .song_cover {
+    border-radius: $radius_sm;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-width: 100px;
+    min-height: 100px;
+  }
+
+  .song_name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  button {
+    border-radius: $radius_sm;
+    font-size: 18px;
+  }
+
+  button:hover {
+    background-color: $fg_accent;
+  }
+}

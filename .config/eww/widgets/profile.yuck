@@ -1,0 +1,28 @@
+(defwidget profile []
+  (box
+    :orientation "h"
+    :spacing 15
+    :space-evenly "false"
+    
+    (box
+      :vexpand "false"
+      :valign "center"
+      :halign "center"
+      :class "profile_picture"
+    )
+    
+    (box
+      :orientation "v"
+      :halign "start"
+      :valign "center"
+      
+      (label
+        :class "profile_name"
+        :text username
+        :halign "start"
+      )
+      (label
+        :class "profile_environment"
+        :text "@${environment}"
+        :halign "start"
+      ))))

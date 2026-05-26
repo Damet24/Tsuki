@@ -59,160 +59,16 @@ $padding_md: 15px;
 }
 
 /* =========================
-   SCALE
-========================= */
-
-scale {
-  min-width: 340px;
-}
-
-scale trough {
-  min-height: 10px;
-
-  border-radius: 999px;
-  background: $fg_accent;
-}
-
-scale highlight {
-  background: $accent;
-  border-radius: 999px;
-}
-
-// scale slider {
-//   background: $accent;
-//
-//   min-width: 14px;
-//   min-height: 14px;
-//
-//   border-radius: 999px;
-// }
-
-/* =========================
    BUTTON
 ========================= */
 
 .silent_btn {
-  // @include card;
-
   min-width: 20px;
   min-height: 20px;
 
   border-radius: $radius_sm;
 
   font-size: 22px;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile_picture {
-  background-image: url("images/profile.jpeg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  min-width: 70px;
-  min-height: 70px;
-
-  border-radius: 999px;
-
-  border: 2px solid $muted;
-}
-
-.profile_name {
-  color: $fg;
-
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.profile_environment {
-  color: $fg2;
-  font-size: 18px;
-}
-
-/* =========================
-   POWERMENU
-========================= */
-
-.powermenu_btn {
-  @include card;
-
-  min-width: 60px;
-  min-height: 60px;
-
-  border-radius: 999px;
-
-  font-size: 22px;
-}
-
-.powermenu_btn:hover {
-  background: $fg_accent;
-}
-
-/* =========================
-   AUDIO
-========================= */
-
-.audio_container {
-  @include bg_container;
-}
-
-.vol_icon,
-.mic_icon {
-  font-size: 20px;
-  min-width: 24px;
-
-  color: $fg;
-
-  margin-top: -1px;
-}
-
-/* =========================
-   MUSIC
-========================= */
-
-.music_container {
-  @include bg_container;
-
-  .song_cover {
-    border-radius: $radius_sm;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    min-width: 95px;
-    min-height: 95px;
-  }
-
-  .song_name {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  button {
-    border-radius: $radius_sm;
-    font-size: 18px;
-  }
-
-  button:hover {
-    background-color: $fg_accent;
-  }
-}
-
-/* =========================
-   SYSTEM
-========================= */
-
-.system_container {
-  button {
-    background-color: $muted;
-    border-radius: $radius_md;
-    min-height: 90px;
-    font-size: 26px;
-  }
 }
 
 /* =========================
@@ -223,37 +79,6 @@ scale highlight {
   @include bg_container;
 
   min-height: 80px;
-
-}
-
-/* =========================
-   OSD
-========================= */
-
-.osd {
-  background: $bg;
-
-  padding: 9px $padding_md;
-
-  border-radius: $radius_sm;
-}
-
-.osd_icon {
-  color: $accent;
-  font-size: 20px;
-}
-
-.osd_scale trough {
-  min-height: 10px;
-
-  border-radius: 4px;
-
-  background: $muted;
-}
-
-.osd_scale highlight {
-  background: $accent;
-  border-radius: 4px;
 }
 
 .system_power_widget {
@@ -262,62 +87,15 @@ scale highlight {
   min-width: 80px;
 }
 
-.power_overlay {
-  background-color: rgba(0, 0, 0, 0.35);
-}
-
-.power_menu {
-  background: rgba(20, 20, 20, 0.75);
-
-  padding: 30px;
-
-  border-radius: 20px;
-
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.power_title {
-  color: $fg;
-
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.power_buttons {
-  padding: 5px 0;
-}
-
-.power_btn {
-  background: $muted;
-
-  min-width: 80px;
-  min-height: 80px;
-
-  border-radius: 16px;
-
-  font-size: 32px;
-  color: $fg;
-
-  transition: 200ms ease;
-}
-
-.power_btn:hover {
-  background: $accent;
-  color: $bg;
-}
-
-.time_widget {
-  label {
-    font-size: 18px;
-  }
-}
-
-.network_status {
-  @include bg_container;
-}
-
 /* =========================
    IMPORTS
 ========================= */
 
-@import "end.scss";
+@import "widgets/profile";
+@import "widgets/audio";
+@import "widgets/music";
+@import "widgets/power";
+@import "widgets/time";
+@import "widgets/network";
+@import "widgets/end";
+@import "widgets/music_player";

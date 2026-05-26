@@ -1,0 +1,40 @@
+(defwidget music_panel []
+  (box
+    :class "music_container"
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 15
+
+    (box
+      :class "song_cover"
+      :hexpand "false"
+      :style "background-image: url('${song_cover}');"
+    )
+
+    (box
+      :hexpand "true"
+      :orientation "v"
+
+      (label 
+        :class "song_name"
+        :limit-width 25
+        :text song
+      )
+
+      (label 
+        :class "song_artist"
+        :limit-width 25
+        :text song_artist
+      )
+
+      (box
+        :orientation "h"
+
+        (button :onclick "~/scripts/music_info --prev" "󰒮")
+        (button :onclick "~/scripts/music_info --toggle" song_status)
+        (button :onclick "~/scripts/music_info --next" "󰒭")
+        (button :onclick "~/scripts/music_info --loop" loop_status)
+      )
+    )
+  )
+)

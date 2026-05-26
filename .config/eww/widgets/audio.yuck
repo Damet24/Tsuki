@@ -1,0 +1,86 @@
+(defwidget audio []
+  (box
+    :class "audio_container"
+    :orientation "v"
+    :spacing 15
+    
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      :valign "center"
+      :spacing 10
+      
+      (button
+        :class "vol_icon"
+        :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/scripts/volume_osd"
+        "󰕾"
+      )
+
+      (scale
+        :flipped "false"
+        :orientation "h"
+        :min 0
+        :max 100
+        :value volume_percent
+        :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+      )
+
+      (label
+        :text "${volume_percent}%"
+        :valign "center"
+      )
+    )
+    
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      :valign "center"
+      :spacing 10
+      
+      (button
+        :class "vol_icon"
+        :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "󰍬"
+      )
+
+      (scale
+        :flipped "false"
+        :orientation "h"
+        :min 0
+        :max 100
+        :value mic_percent
+        :onchange "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ {}%"
+      )
+
+      (label
+        :text "${mic_percent}%"
+        :valign "center"
+      )
+    )
+  )
+)
+
+(defwidget volume_osd_widget []
+  (box
+    :class "osd"
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 15
+    :active "false"
+    :visible volume_visible
+    
+    (label
+      :class "osd_icon"
+      :spacing 0
+    :text {volume_muted == "true" ? "󰝟" : "󰕾"})
+    
+    (scale
+      :class "osd_scale"
+      :spacing 0
+      :orientation "h"
+      :hexpand "true"
+      :min 0
+      :max 100
+      :value volume_percent
+    :active "true")
+  ))

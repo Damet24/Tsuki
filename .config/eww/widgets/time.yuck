@@ -1,0 +1,8 @@
+(defwidget time_widget []
+  (box
+    :class "time_widget"
+    :orientation "h"
+
+    (label :text "${time_day_name} ${time_month_name} ${time_year}")
+  )
+)

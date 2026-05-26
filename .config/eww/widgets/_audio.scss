@@ -1,0 +1,55 @@
+scale {
+  min-width: 340px;
+}
+
+scale trough {
+  min-height: 10px;
+
+  border-radius: 999px;
+  background: $fg_accent;
+}
+
+scale highlight {
+  background: $accent;
+  border-radius: 999px;
+}
+
+.audio_container {
+  @include bg_container;
+}
+
+.vol_icon,
+.mic_icon {
+  font-size: 20px;
+  min-width: 24px;
+
+  color: $fg;
+
+  margin-top: -1px;
+}
+
+.osd {
+  background: $bg;
+
+  padding: 9px $padding_md;
+
+  border-radius: $radius_sm;
+}
+
+.osd_icon {
+  color: $accent;
+  font-size: 20px;
+}
+
+.osd_scale trough {
+  min-height: 10px;
+
+  border-radius: 4px;
+
+  background: $muted;
+}
+
+.osd_scale highlight {
+  background: $accent;
+  border-radius: 4px;
+}

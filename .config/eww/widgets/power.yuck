@@ -1,0 +1,60 @@
+(defwidget porwerbuttons []
+  (box
+    :class "powerbuttons_container"
+    :orientation "h"
+    :spacing 15
+    :valign "center"
+    :halign "end"
+    
+    (button
+      :class "powermenu_btn"
+      :onclick "/usr/bin/hyprlock" "󰍁"
+    )
+
+    (button
+      :class "powermenu_btn"
+      :onclick "" "󰐥"
+    )))
+
+(defwidget system_panel []
+  (box
+    :class "system_container"
+    :orientation "v"
+    :space-evenly "false"
+    :spacing 15
+
+    (box
+      :orientation "h"
+      :spacing 15
+
+      (button 
+        "󰒮"
+      )
+
+      (button 
+        "󰒮"
+      )
+
+      (button 
+        "󰒮"
+      )
+    )
+
+    (box
+      :orientation "h"
+      :spacing 15
+
+      (button 
+        "󰒮"
+      )
+
+      (button 
+        "󰒮"
+      )
+
+      (button 
+        "󰒮"
+      )
+    )
+  )
+)

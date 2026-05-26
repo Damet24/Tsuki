@@ -1,0 +1,67 @@
+.powermenu_btn {
+  @include card;
+
+  min-width: 60px;
+  min-height: 60px;
+
+  border-radius: 999px;
+
+  font-size: 22px;
+}
+
+.powermenu_btn:hover {
+  background: $fg_accent;
+}
+
+.system_container {
+  button {
+    background-color: $muted;
+    border-radius: $radius_md;
+    min-height: 90px;
+    font-size: 26px;
+  }
+}
+
+.power_overlay {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.power_menu {
+  background: rgba(20, 20, 20, 0.75);
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.power_title {
+  color: $fg;
+
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.power_buttons {
+  padding: 5px 0;
+}
+
+.power_btn {
+  background: $muted;
+
+  min-width: 80px;
+  min-height: 80px;
+
+  border-radius: 16px;
+
+  font-size: 32px;
+  color: $fg;
+
+  transition: 200ms ease;
+}
+
+.power_btn:hover {
+  background: $accent;
+  color: $bg;
+}

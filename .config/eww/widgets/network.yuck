@@ -1,0 +1,8 @@
+(defwidget network_status []
+  (box 
+    :class "network_status"
+    :vexpand "false"
+
+    (label :text network_status :halign "start")
+  )
+)
