@@ -8,7 +8,9 @@
         "README.md",
         ".dotctl",
         "__pycache__",
-        "tests"
+        "tests",
+        "*.bak",
+        "LICENSE"
       ],
       "exclude_patterns": [
         "*.pyc",
