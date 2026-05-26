@@ -4,7 +4,7 @@ hl.config({
 	general = {
 		gaps_in = 12,
 		gaps_out = 12,
-		border_size = 2,
+		border_size = 0,
 		col = {
 			active_border = { colors = { colors.red }, angle = 45 },
 			inactive_border = colors.bg_night,
@@ -15,7 +15,7 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 20,
+		rounding = 10,
 		rounding_power = 2,
 		active_opacity = 1.0,
 		inactive_opacity = 1.0,

@@ -1,8 +1,12 @@
 hl.on("hyprland.start", function()
+	hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
+	hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
 	hl.exec_cmd("waybar -c ~/.config/waybar/current/config.jsonc -s ~/.config/waybar/current/style.css")
 	hl.exec_cmd("~/.local/bin/awww-daemon")
 	hl.exec_cmd("~/.local/bin/awww img ~/Pictures/Wallpapers/samurai_original.png")
 	hl.exec_cmd("~/.local/bin/eww daemon")
 	hl.exec_cmd("~/.local/bin/eww open volume_osd --screen 0")
 	hl.exec_cmd("~/.local/bin/end-rs daemon")
+
+	hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
 end)
