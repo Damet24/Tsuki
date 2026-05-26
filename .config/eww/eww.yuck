@@ -17,6 +17,10 @@
 (defpoll time_day_name :interval "30m" "date +\"%A\"")
 (defpoll time_month_name :interval "48h" "date +\%B")
 
+(defpoll calendar_day :interval "20h" "date '+%d'")
+(defpoll calendar_year :interval "20h" "date '+%Y'")
+(defpoll calendar_month :interval "20h" "date '+%m'")
+
 (defpoll song :interval "1s"  "~/scripts/music_info --song")
 (defpoll song_artist :interval "1s"  "~/scripts/music_info --artist")
 (defpoll song_status :interval "1s"  "~/scripts/music_info --status")
@@ -241,6 +245,26 @@
     (music_player)
   ))
 
+(defwindow calendar_widget_window
+  :namespace "music_player"
+
+  :geometry (geometry
+    :anchor "right bottom"
+    :x "12px"
+  :y "12px")
+  :stacking "fg"
+  :hexpand "false"
+  :vexpand "false"
+
+    (box
+    :class "bg"
+    :orientation "v"
+    :space-evenly "false"
+
+    (calendar_widget)
+  ))
+
+
 
 
 (include "widgets/profile.yuck")
@@ -251,4 +275,5 @@
 (include "widgets/network.yuck")
 (include "widgets/end.yuck")
 (include "widgets/music_player.yuck")
+(include "widgets/calendar.yuck")
 

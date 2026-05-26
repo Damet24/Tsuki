@@ -1,0 +1,22 @@
+
+(defwidget calendar_widget []
+  (box
+    :class "music_player_container"
+    :orientation "v"
+    :space-evenly "false"
+    :spacing 15
+
+      (box
+        :orientation "h"
+        :space-evenly "false"
+        :spacing 15
+
+        (calendar 
+          :class "cal" 
+			    :day calendar_day 
+			    :year calendar_year
+			    :month calendar_month
+			  )
+      )
+  )
+)
