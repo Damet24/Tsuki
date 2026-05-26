@@ -71,6 +71,7 @@ tooltip label {
 #custom-screenrecording-indicator.active,
 #custom-update,
 #custom-home,
+#custom-music,
 #custom-end-history {
     color: @fg;
     background: @bg;

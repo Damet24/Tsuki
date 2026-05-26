@@ -18,12 +18,14 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "network",
+        "custom/music",
+        "tray",
         "custom/clock",
+        "custom/updates",
         "custom/end-history"
     ],
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        "disable-scroll": false,
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
@@ -296,5 +298,18 @@
         "format": "通",
         "on-click": "~/.local/bin/end-rs history toggle",
         "tooltip-format": "Notification History"
+    },
+    "custom/music": {
+        "format": "{}",
+        "exec": "$HOME/scripts/music_info --waybar",
+        "on-click": "$HOME/.config/eww/launch_music_player",
+        "interval": 1,
+        "return-type": "json"
+    },
+    "custom/updates": {
+        "exec": "$HOME/scripts/updates",
+        "interval": 1800,
+        "on-click": "kitty -e sudo dnf upgrade",
+        "format": "{}"
     }
 }

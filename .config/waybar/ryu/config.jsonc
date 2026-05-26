@@ -47,6 +47,7 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
+        "on-click": "hyprctl dispatch workspace {id}",
         "format": "{icon}",
         "format-icons": {
             "1": "一",
@@ -277,5 +278,11 @@
         "format": "通",
         "on-click": "~/.local/bin/end-rs history toggle",
         "tooltip-format": "Notification History"
+    },
+    "custom/updates": {
+        "exec": "~/.local/bin/updates.sh",
+        "interval": 1800,
+        "on-click": "kitty -e sudo dnf upgrade",
+        "format": "{}"
     }
 }
