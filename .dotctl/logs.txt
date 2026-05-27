@@ -13,3 +13,13 @@
 [2026-05-26T22:02:59.140548] SYNC start profile=default
 [2026-05-26T22:02:59.145218] LINK /home/damet/.config/rofi/themes/minimal.rasi -> /home/damet/Documents/tsuki/.config/rofi/themes/minimal.rasi
 [2026-05-26T22:02:59.171945] SYNC end
+[2026-05-26T22:58:33.924606] SYNC start profile=default
+[2026-05-26T22:58:33.957939] SYNC end
+[2026-05-26T22:58:47.614145] SYNC start profile=default
+[2026-05-26T22:58:47.646226] SYNC end
+[2026-05-26T22:59:14.176327] SNAPSHOT /home/damet/Documents/tsuki/.dotctl/snapshots/20260526-225914.json
+[2026-05-26T22:59:39.505384] SYNC start profile=default
+[2026-05-26T22:59:39.536507] SYNC end
+[2026-05-27T13:05:06.727992] SYNC start profile=default
+[2026-05-27T13:05:06.732873] LINK /home/damet/.config/hypr/hypridle.conf -> /home/damet/Documents/tsuki/.config/hypr/hypridle.conf
+[2026-05-27T13:05:06.765699] SYNC end

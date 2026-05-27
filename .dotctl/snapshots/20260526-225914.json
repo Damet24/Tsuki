@@ -10,9 +10,5 @@
   "/home/damet/.config/rofi/themes/minimal.rasi": {
     "src": "/home/damet/Documents/tsuki/.config/rofi/themes/minimal.rasi",
     "hash": "db0951f94511c6693d2af4989bf3e6c0d2833c2fc65741dc4041fbc435b9de4d"
-  },
-  "/home/damet/.config/hypr/hypridle.conf": {
-    "src": "/home/damet/Documents/tsuki/.config/hypr/hypridle.conf",
-    "hash": "4f6f86d8e4f2cf5be6ccb5880379ffbe1ac6474b88228537804f44f9d0fb199d"
   }
 }
