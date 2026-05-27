@@ -5,3 +5,11 @@
 [2026-05-26T09:55:36.031349] SYNC start profile=default
 [2026-05-26T09:55:36.034802] LINK /home/damet/.config/eww/launch_calendar -> /home/damet/Documents/tsuki/.config/eww/launch_calendar
 [2026-05-26T09:55:36.063295] SYNC end
+[2026-05-26T10:03:20.931284] SYNC start profile=default
+[2026-05-26T10:03:20.963332] SYNC end
+[2026-05-26T21:58:57.404447] SYNC start profile=default
+[2026-05-26T21:58:57.409135] LINK /home/damet/.config/rofi/config.rasi -> /home/damet/Documents/tsuki/.config/rofi/config.rasi
+[2026-05-26T21:58:57.436702] SYNC end
+[2026-05-26T22:02:59.140548] SYNC start profile=default
+[2026-05-26T22:02:59.145218] LINK /home/damet/.config/rofi/themes/minimal.rasi -> /home/damet/Documents/tsuki/.config/rofi/themes/minimal.rasi
+[2026-05-26T22:02:59.171945] SYNC end

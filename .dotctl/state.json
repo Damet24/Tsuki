@@ -2,5 +2,13 @@
   "/home/damet/.config/eww/launch_calendar": {
     "src": "/home/damet/Documents/tsuki/.config/eww/launch_calendar",
     "hash": "fec80ed5b430550d92d4a23df924fa710b418b9858b192591b91fe765638cfd2"
+  },
+  "/home/damet/.config/rofi/config.rasi": {
+    "src": "/home/damet/Documents/tsuki/.config/rofi/config.rasi",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "/home/damet/.config/rofi/themes/minimal.rasi": {
+    "src": "/home/damet/Documents/tsuki/.config/rofi/themes/minimal.rasi",
+    "hash": "db0951f94511c6693d2af4989bf3e6c0d2833c2fc65741dc4041fbc435b9de4d"
   }
 }
