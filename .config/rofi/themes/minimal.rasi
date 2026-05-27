@@ -1,0 +1,196 @@
+/**
+ * Modern Rofi Sidebar
+ * Inspired by AGS / Eww / macOS Control Center
+ * Author: Damet
+ */
+
+* {
+    font: "JetBrainsMono Nerd Font 12";
+
+    foreground: #ffffff;
+
+    background: rgba(0, 0, 0,1);
+    background-alt: rgba(255,255,255,0.05);
+
+    accent: #8ab4f8;
+
+    selected: rgba(255,255,255,0.08);
+
+    urgent: #ff6b6b;
+
+    transparent: rgba(0,0,0,0);
+
+    text-color: #ffffff;
+}
+
+/* -----------------------------------------------------
+ * WINDOW
+ * ----------------------------------------------------- */
+
+window {
+    location: west;
+    anchor: west;
+
+    x-offset: 12px;
+
+    width: 470px;
+    height: 650px;
+
+    transparency: "real";
+
+    background-color: @background;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    spacing: 0;
+}
+
+/* -----------------------------------------------------
+ * MAINBOX
+ * ----------------------------------------------------- */
+
+mainbox {
+    children: [ inputbar, listview ];
+
+    spacing: 14px;
+
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * INPUT BAR
+ * ----------------------------------------------------- */
+
+inputbar {
+    children: [ prompt, entry ];
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    background-color: @background-alt;
+
+    spacing: 10px;
+}
+
+/* Search icon */
+
+prompt {
+    enabled: true;
+
+    text-color: @accent;
+
+    font: "JetBrainsMono Nerd Font Bold 14";
+
+    background-color: transparent;
+}
+
+/* Typed text */
+
+entry {
+    placeholder: "Search";
+
+    placeholder-color: rgba(255,255,255,0.35);
+
+    text-color: #ffffff;
+
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * LISTVIEW
+ * ----------------------------------------------------- */
+
+listview {
+    lines: 10;
+
+    columns: 1;
+
+    fixed-height: false;
+
+    scrollbar: false;
+
+    spacing: 10px;
+
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * ELEMENT
+ * ----------------------------------------------------- */
+
+element {
+    orientation: horizontal;
+
+    border-radius: 18px;
+
+    padding: 12px;
+
+    spacing: 14px;
+
+    background-color: transparent;
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @selected;
+}
+
+/* -----------------------------------------------------
+ * ICON
+ * ----------------------------------------------------- */
+
+element-icon {
+    size: 42px;
+
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * TEXT
+ * ----------------------------------------------------- */
+
+element-text {
+    background-color: transparent;
+
+    text-color: #ffffff;
+
+    font: "JetBrainsMono Nerd Font Medium 12";
+
+    vertical-align: 0.5;
+}
+
+/* -----------------------------------------------------
+ * MODE SWITCHER
+ * ----------------------------------------------------- */
+
+mode-switcher {
+    enabled: false;
+}
+
+/* -----------------------------------------------------
+ * MESSAGE
+ * ----------------------------------------------------- */
+
+message {
+    enabled: false;
+}
+
+/* -----------------------------------------------------
+ * ERROR
+ * ----------------------------------------------------- */
+
+error-message {
+    padding: 12px;
+
+    border-radius: 16px;
+
+    background-color: rgba(255,0,0,0.15);
+
+    text-color: #ffffff;
+}
