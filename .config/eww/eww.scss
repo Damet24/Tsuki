@@ -87,47 +87,6 @@ $padding_md: 15px;
   min-width: 80px;
 }
 
-
-// calendar {
-//   background-color: $bg;
-//   font-family: Roboto;
-//   font-size: 18px;
-//   font-weight: normal;
-//
-//   &:selected {
-//     border-radius: 3px;
-//   }
-//
-//   &.header {
-//     border-bottom-color: transparentize(black, 0.9);
-//
-//     &:backdrop {
-//       border-bottom-color: transparentize(black, 0.9);
-//     }
-//   }
-//
-//   &.button {
-//
-//     color: transparentize(white, 0.55);
-//
-//     &:hover {
-//       color: $accent;
-//     }
-//
-//     &:backdrop {
-//       color: transparentize(purple, 0.55);
-//     }
-//
-//     &:disabled {
-//       color: transparentize(cyan, 0.55);
-//     }
-//   }
-//
-//   &.highlight {
-//     color: white;
-//   }
-// }
-
 calendar {
   border-radius: 20px;
   background-color: $bg;
