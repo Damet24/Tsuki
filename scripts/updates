@@ -1,11 +1,271 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-updates=$(dnf check-update -q 2>/dev/null | \
-          grep -vE '^(Last metadata expiration|Obsoleting|Security|$)' | \
-          wc -l)
+import json
+import subprocess
+import sys
 
-if [ "$updates" -eq 0 ]; then
-    echo ""
-else
-    echo " $updates"
-fi
+
+# =========================================================
+# Helpers
+# =========================================================
+
+def eww_update(variable, value):
+
+    subprocess.run([
+        "/home/damet/.local/bin/eww",
+        "update",
+        f"{variable}={str(value).lower()}"
+    ])
+
+def run_command(command):
+    try:
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True
+        )
+
+        return result.stdout.strip(), result.returncode
+
+    except Exception:
+        return "", 1
+
+
+# =========================================================
+# DNF
+# =========================================================
+
+def get_dnf_updates():
+    stdout, code = run_command(
+        ["dnf", "check-update", "--quiet"]
+    )
+
+    packages = []
+
+    if code == 100:
+
+        for line in stdout.splitlines():
+
+            line = line.strip()
+
+            if not line:
+                continue
+
+            if line.startswith("Last metadata"):
+                continue
+
+            parts = line.split()
+
+            if len(parts) >= 1:
+                packages.append(parts[0])
+
+    return packages
+
+
+# =========================================================
+# Flatpak
+# =========================================================
+
+def get_flatpak_updates():
+
+    stdout, code = run_command(
+        ["flatpak", "remote-ls", "--updates"]
+    )
+
+    packages = []
+
+    for line in stdout.splitlines():
+
+        line = line.strip()
+
+        if not line:
+            continue
+
+        parts = line.split("\t")
+
+        if len(parts) >= 1:
+            packages.append(parts[0])
+
+    return packages
+
+
+# =========================================================
+# EWW RENDER
+# =========================================================
+
+def generate_eww_list(packages):
+
+    if len(packages) == 0:
+        return """
+(box
+    :orientation "v"
+
+    (label
+        :halign "start"
+        :class "empty-label"
+        :text " No updates available")
+)
+"""
+
+    content = """
+(box
+    :orientation "v"
+    :spacing 5
+"""
+
+    for package in packages:
+
+        content += f'''
+    (label
+        :halign "start"
+        :class "update-package"
+        :text " {package}")
+'''
+
+    content += "\n)"
+
+    return content
+
+
+# =========================================================
+# Update Commands
+# =========================================================
+
+def open_update_terminal(command):
+
+    subprocess.run([
+        "kitty",
+        "--class",
+        "update-terminal",
+        "sh",
+        "-c",
+        f"{command}; exec bash"
+    ])
+
+
+def update_dnf():
+    open_update_terminal(
+        "sudo dnf upgrade --refresh -y"
+    )
+
+
+def update_flatpak():
+    open_update_terminal(
+        "flatpak update -y"
+    )
+
+
+def update_all():
+    open_update_terminal(
+        "sudo dnf upgrade --refresh -y && flatpak update -y"
+    )
+
+
+# =========================================================
+# Data
+# =========================================================
+
+dnf_updates = get_dnf_updates()
+flatpak_updates = get_flatpak_updates()
+
+total_updates = len(dnf_updates) + len(flatpak_updates)
+
+command = sys.argv[1] if len(sys.argv) > 1 else "status"
+
+
+# =========================================================
+# STATUS
+# =========================================================
+
+if command == "status":
+    if len(sys.argv) == 2:
+        if total_updates > 0:
+            print(f" {total_updates}")
+        else:
+            print("")
+    else:
+        target = sys.argv[2]
+
+        if target == "dnf":
+            print(len(dnf_updates))
+
+        elif target == "flatpak":
+            target = sys.argv[2]
+            print(len(flatpak_updates))
+
+
+
+# =========================================================
+# JSON
+# =========================================================
+
+elif command == "json":
+
+    data = {
+        "total": total_updates,
+
+        "dnf": {
+            "count": len(dnf_updates),
+            "packages": dnf_updates
+        },
+
+        "flatpak": {
+            "count": len(flatpak_updates),
+            "packages": flatpak_updates
+        }
+    }
+
+    print(json.dumps(data, indent=2))
+
+
+# =========================================================
+# EWW
+# =========================================================
+
+elif command == "eww":
+
+    target = sys.argv[2]
+
+    if target == "dnf":
+        print(generate_eww_list(dnf_updates))
+
+    elif target == "flatpak":
+        print(generate_eww_list(flatpak_updates))
+
+
+# =========================================================
+# LIST
+# =========================================================
+
+elif command == "list":
+
+    target = sys.argv[2]
+
+    if target == "dnf":
+        print("\n".join(dnf_updates))
+
+    elif target == "flatpak":
+        print("\n".join(flatpak_updates))
+
+    elif target == "all":
+
+        print("\n".join(dnf_updates))
+        print("\n".join(flatpak_updates))
+
+
+# =========================================================
+# UPDATE
+# =========================================================
+
+elif command == "update":
+
+    target = sys.argv[2]
+
+    if target == "dnf":
+        update_dnf()
+
+    elif target == "flatpak":
+        update_flatpak()
+
+    elif target == "all":
+        update_all()

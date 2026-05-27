@@ -14,5 +14,13 @@
   "/home/damet/.config/hypr/hypridle.conf": {
     "src": "/home/damet/Documents/tsuki/.config/hypr/hypridle.conf",
     "hash": "4f6f86d8e4f2cf5be6ccb5880379ffbe1ac6474b88228537804f44f9d0fb199d"
+  },
+  "/home/damet/.config/eww/launch_updates_widget": {
+    "src": "/home/damet/Documents/tsuki/.config/eww/launch_updates_widget",
+    "hash": "a938be37a97cefb7d1a468137574c2e0499fd4df2425a19556db4b3afe45b63f"
+  },
+  "/home/damet/.config/eww/toggle_var": {
+    "src": "/home/damet/Documents/tsuki/.config/eww/toggle_var",
+    "hash": "cc452743d298479e9e428c1a51be69794dfe1689622bdc490971f112748dd7fa"
   }
 }

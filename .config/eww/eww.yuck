@@ -3,6 +3,7 @@
 (defvar mic_visible false)
 
 (defvar end-binary "~/.local/bin/end-rs")
+(defvar eww "~/.local/bin/eww")
 (defpoll username :interval "48h"  "whoami")
 (defpoll environment :interval "48h" "echo $XDG_CURRENT_DESKTOP")
 
@@ -150,7 +151,8 @@
     :x "0px"
     :y "12px"
     :width "220px"
-  :height "45px")
+    :height "45px"
+  )
   :stacking "overlay"
   :focusable "none"
   :windowtype "dialog"
@@ -265,6 +267,21 @@
   ))
 
 
+(defwindow updates_widget_window
+  :namespace "updates_widget"
+
+  :geometry (geometry
+    :anchor "right bottom"
+    :x "12px"
+    :y "12px"
+    :width "300px"
+    :height "150px"
+  )
+  :stacking "fg"
+
+  (updates_widget)
+)
+
 
 
 (include "widgets/profile.yuck")
@@ -276,4 +293,5 @@
 (include "widgets/end.yuck")
 (include "widgets/music_player.yuck")
 (include "widgets/calendar.yuck")
+(include "widgets/updates.yuck")
 

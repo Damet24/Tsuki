@@ -77,6 +77,16 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "update-terminal",
+	match = {
+		class = "update-terminal",
+	},
+	float = true,
+	center = true,
+	size = { "monitor_w * 0.35", "monitor_h * 0.35" },
+})
+
+hl.window_rule({
 	name = "bitwarden-popup",
 	match = {
 		class = "brave-nngceckbapebfimnlniiiahkandclblb-Default",

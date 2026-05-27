@@ -62,12 +62,20 @@ hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 1.79, bezier = "al
 hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "almostLinear" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "almostLinear", style = "slide" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
+
 hl.layer_rule({
 	match = {
 		namespace = "rofi"
 	},
 
 	animation = "slide left"
+})
+
+hl.layer_rule({
+	match = {
+		namespace = "selection",
+	},
+	animation = "fade"
 })
 
 -- Layouts

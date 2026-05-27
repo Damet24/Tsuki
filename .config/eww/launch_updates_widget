@@ -1,0 +1,33 @@
+#!/bin/bash
+
+FILE="$HOME/.cache/eww_launch_side.xyz"
+EWW="$HOME/.local/bin/eww -c $HOME/.config/eww"
+
+w_ls="updates_widget_window"
+
+## Start daemon if not running
+if ! pidof eww >/dev/null; then
+	$EWW daemon
+	sleep 1
+fi
+
+run_eww() {
+	for win in $w_ls; do
+		$EWW open "$win" --screen 0
+	done
+}
+
+close_eww() {
+	for win in $w_ls; do
+		$EWW close "$win"
+	done
+}
+
+## Toggle logic
+if [[ ! -f "$FILE" ]]; then
+	touch "$FILE"
+	run_eww
+else
+	close_eww
+	rm "$FILE"
+fi

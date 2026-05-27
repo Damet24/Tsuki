@@ -1,0 +1,16 @@
+#!/bin/bash
+
+VAR_NAME="$1"
+
+if [ -z "$VAR_NAME" ]; then
+    echo "Usage: toggle-variable <variable_name>"
+    exit 1
+fi
+
+CURRENT=$(eww get "$VAR_NAME")
+
+if [ "$CURRENT" = "true" ]; then
+    eww update "$VAR_NAME=false"
+else
+    eww update "$VAR_NAME=true"
+fi

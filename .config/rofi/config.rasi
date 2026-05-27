@@ -167,4 +167,6 @@ configuration {
   }
 }
 
+//@theme "/home/damet/.config/rofi/themes/minimal.rasi"
+
 @theme "/home/damet/.config/rofi/themes/minimal.rasi"

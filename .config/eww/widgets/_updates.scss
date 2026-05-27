@@ -1,0 +1,40 @@
+.updates_widget_window {
+  background-color: black;
+  border-radius: $radius_sm;
+  @include container;
+}
+
+.updates_widget_container {
+  color: $white;
+  font-family: 'Roboto';
+  font-size: 13px;
+
+  .header {
+    font-weight: bold;
+  }
+
+
+  .update_section {
+    @include bg_container;
+
+    .empty-label {
+      color: transparentize($fg, 0.4)
+    }
+
+    .scroll_container {
+      padding-top: 6px;
+      padding-left: 15px;
+    }
+  }
+
+  button {
+    border-radius: $radius_sm;
+    font-size: 11px;
+    padding: 5px;
+  }
+
+  button:hover {
+    background-color: $fg_accent;
+    color: $accent;
+  }
+}

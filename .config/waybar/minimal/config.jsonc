@@ -22,7 +22,7 @@
 	"hyprland/workspaces": {
 		"disable-scroll": false,
 		"all-outputs": true,
-		"format": "{icon}",
+		"format": "{name}",
 		"format-icons": {
 			"1": "一",
 			"2": "二",
@@ -254,9 +254,12 @@
 		"tooltip": false
 	},
 	"custom/updates": {
-		"exec": "$HOME/scripts/updates",
-		"interval": 1800,
-		"on-click": "kitty -e sudo dnf upgrade",
-		"format": "{}"
+		"exec": "bash -c '$HOME/scripts/updates status'",
+		"return-type": "text",
+		"on-click": "$HOME/.config/eww/launch_updates_widget",
+		"tooltip": false,
+		"interval": 1800
 	}
 }
+
+//kitty --class update-terminal sh -c 'sudo dnf update -y && flatpak update -y; exec bash'

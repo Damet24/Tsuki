@@ -1,0 +1,175 @@
+(defvar show_dnf_updates false)
+(defvar show_flatpak_updates false)
+(defvar updating_dnf false)
+(defvar updating_flatpak false)
+(defvar updating_all false)
+
+(defpoll dnf_updates
+  :interval "30m"
+  "~/scripts/updates eww dnf")
+
+(defpoll flatpak_updates
+  :interval "30m"
+  "~/scripts/updates eww flatpak")
+
+(defpoll dnf_updates_number 
+  :interval "30m"
+  "~/scripts/updates status dnf"
+)
+
+(defpoll flatpak_updates_number 
+  :interval "30m"
+  "~/scripts/updates status flatpak"
+)
+
+(defwidget updates_widget []
+  (box
+    :class "updates_widget_container"
+    :orientation "v"
+    :space-evenly false
+    :spacing 15
+
+    (box
+      :class "header"
+      :space-evenly false
+      :halign "start"
+      :spacing 15
+
+      (label 
+        :class "icon"
+        :text ""
+        :halign "start"
+      )
+      (label
+        :halign "start"
+        :hexpand true
+        :text "System updates"
+      )
+    )
+
+    (box
+      :class "update_section"
+      :space-evenly false
+      :orientation "v"
+
+      (eventbox
+        :class "update_list"
+        :onclick "$HOME/.config/eww/toggle_var show_dnf_updates"
+
+        (box
+          :orientation "v"
+          :space-evenly false
+          :spacing 2
+
+          (box
+            :space-evenly false
+            :spacing 10
+            :hexpand false
+
+            (label
+              :halign "start"
+              :text ""
+            )
+            (label
+              :halign "start"
+              :text "󰏓"
+            )
+            (label
+              :halign "start"
+              :text "DNF Updates"
+            )
+            (label :text dnf_updates_number)
+          )
+
+          (revealer
+            :transition "slidedown"
+            :reveal show_dnf_updates
+            :duration "550ms"
+
+            (box
+              :class "scroll_container"
+              :height 120
+
+              (scroll
+                :vscroll true
+                :hscroll false
+                :vexpand true
+
+                (literal :content dnf_updates)
+              )
+            )
+          )
+        )
+      )
+
+      (eventbox
+        :class "update_list"
+        :onclick "$HOME/.config/eww/toggle_var show_flatpak_updates"
+
+        (box
+          :orientation "v"
+          :space-evenly false
+
+
+          (box
+            :space-evenly false
+            :spacing 10
+            :hexpand true
+
+            (label
+              :halign "start"
+              :text ""
+            )
+            (label
+              :halign "start"
+              :text ""
+            )
+            (label
+              :halign "start"
+              :text "Flatpak Updates"
+            )
+            (label :text flatpak_updates_number)
+          )
+
+          (revealer
+            :transition "slideup"
+            :reveal show_flatpak_updates
+            :duration "550ms"
+
+            (box
+              :class "scroll_container"
+              :height 120
+
+              (scroll
+                :vscroll true
+                :hscroll false
+                :vexpand true
+
+                (literal :content flatpak_updates)
+              )
+            )
+          )
+        )
+      )
+    )
+
+    ;; (box :vexpand "true")
+    (box
+      :orientation "h"
+      :hexpand "true"
+
+      (button 
+        :onclick "kitty -e ~/scripts/updates update dnf &"
+        "Update DNF"
+      )
+      (button 
+        :onclick "kitty -e ~/scripts/updates update flatpak &"
+        "Update Flatpak"
+      )
+      (button 
+        :onclick "kitty -e ~/scripts/updates update all &"
+        "Update All"
+      )
+    )
+  )
+)
