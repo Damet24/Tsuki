@@ -14,7 +14,6 @@ if ! pidof eww >/dev/null; then
 fi
 
 run_eww() {
-	set_anim_slide
 	for win in $w_ls; do
 		$EWW open "$win" --screen 0
 	done

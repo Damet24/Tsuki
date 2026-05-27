@@ -229,9 +229,9 @@
   :namespace "music_player"
 
   :geometry (geometry
-    :anchor "right bottom"
+    :anchor "center bottom"
     :width "450px"
-    :x "12px"
+    :x "50%"
   :y "12px")
   :stacking "fg"
   :hexpand "false"
