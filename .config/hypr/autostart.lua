@@ -1,4 +1,5 @@
 hl.on("hyprland.start", function()
+	hl.exec_cmd("hypridle")
 	hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
 	hl.exec_cmd("waybar -c ~/.config/waybar/current/config.jsonc -s ~/.config/waybar/current/style.css")
