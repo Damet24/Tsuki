@@ -42,3 +42,10 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[OC' forward-word
 bindkey '^[OD' backward-word
+
+# bun completions
+[ -s "/home/damet/.bun/_bun" ] && source "/home/damet/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
