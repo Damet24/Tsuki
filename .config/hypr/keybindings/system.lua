@@ -7,7 +7,7 @@ local screenshotPath = "$HOME/Pictures/Screenshots"
 
 -- Screenshots
 hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("hyprshot -m window -o " .. screenshotPath))
-hl.bind(mainMod .. " + F11", hl.dsp.exec_cmd("hyprshot -m output -o " .. screenshotPath))
+hl.bind(mainMod .. " + F11", hl.dsp.exec_cmd("hyprshot -m output -m DP-1 -o " .. screenshotPath))
 hl.bind(mainMod .. " + F12", hl.dsp.exec_cmd("hyprshot -m region -o " .. screenshotPath))
 
 
