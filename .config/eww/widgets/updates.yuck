@@ -54,12 +54,12 @@
 
       (eventbox
         :class "update_list"
-        :onclick "$HOME/.config/eww/toggle_var show_dnf_updates"
+        :onhover "/home/damet/.local/bin/eww update show_dnf_updates=true"
+        :onhoverlost "/home/damet/.local/bin/eww update show_dnf_updates=false"
 
         (box
           :orientation "v"
-          :space-evenly false
-          :spacing 2
+          :space-evenly false :spacing 2
 
           (box
             :space-evenly false
@@ -104,7 +104,8 @@
 
       (eventbox
         :class "update_list"
-        :onclick "$HOME/.config/eww/toggle_var show_flatpak_updates"
+        :onhover "/home/damet/.local/bin/eww update show_flatpak_updates=true"
+        :onhoverlost "/home/damet/.local/bin/eww update show_flatpak_updates=false"
 
         (box
           :orientation "v"
