@@ -22,5 +22,9 @@
   "/home/damet/.config/eww/toggle_var": {
     "src": "/home/damet/Documents/tsuki/.config/eww/toggle_var",
     "hash": "cc452743d298479e9e428c1a51be69794dfe1689622bdc490971f112748dd7fa"
+  },
+  "/home/damet/.config/hypr/hyprpaper.conf": {
+    "src": "/home/damet/Documents/tsuki/.config/hypr/hyprpaper.conf",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   }
 }

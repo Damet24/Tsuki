@@ -31,3 +31,8 @@
 [2026-05-27T15:44:53.190553] SYNC start profile=default
 [2026-05-27T15:44:53.194140] LINK /home/damet/.config/eww/toggle_var -> /home/damet/Documents/tsuki/.config/eww/toggle_var
 [2026-05-27T15:44:53.224064] SYNC end
+[2026-05-28T08:33:57.450140] SYNC start profile=default
+[2026-05-28T08:33:57.455712] LINK /home/damet/.config/hypr/hyprpaper.conf -> /home/damet/Documents/tsuki/.config/hypr/hyprpaper.conf
+[2026-05-28T08:33:57.493275] SYNC end
+[2026-05-28T08:35:55.401503] SYNC start profile=default
+[2026-05-28T08:35:55.437709] SYNC end
