@@ -12,3 +12,5 @@ hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("~/.config/eww/launch_left"))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("~/.local/bin/end-rs history toggle"))
 hl.bind(mainMod .. " + F1", hl.dsp.exec_cmd("~/.config/eww/launch_music_player"))
 hl.bind(mainMod .. " + F2", hl.dsp.exec_cmd("~/.local/bin/waypaper"))
+
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))

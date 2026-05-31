@@ -10,4 +10,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("/home/damet/.local/bin/end-rs daemon")
 
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+
+	-- clipboard
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)

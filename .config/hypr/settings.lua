@@ -38,6 +38,10 @@ hl.config({
 	animations = {
 		enabled = true,
 	},
+
+	input = {
+		sensitivity = 0.5
+	}
 })
 
 -- Curves
@@ -115,6 +119,7 @@ hl.config({
 		kb_rules = "",
 		follow_mouse = 1,
 		sensitivity = 0,
+		accel_profile = "flat",
 		touchpad = {
 			natural_scroll = false,
 		},
