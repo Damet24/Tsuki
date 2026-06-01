@@ -1,0 +1,59 @@
+#!/bin/bash
+
+workspaces() {
+    ACTIVE=$(hyprctl activeworkspace -j | jq -r '.id')
+    WORKSPACES=$(hyprctl workspaces -j)
+
+    get_class() {
+        local ws=$1
+
+        local windows=$(echo "$WORKSPACES" | jq "[.[] | select(.id == $ws)][0].windows // 0")
+
+        local occupied=""
+        local focused=""
+
+        if [ "$windows" -gt 0 ]; then
+            occupied="$ws"
+        fi
+
+        if [ "$ACTIVE" -eq "$ws" ]; then
+            focused="$ws"
+        fi
+
+        echo "0${occupied}${focused}"
+    }
+
+    c1=$(get_class 1)
+    c2=$(get_class 2)
+    c3=$(get_class 3)
+    c4=$(get_class 4)
+    c5=$(get_class 5)
+    c6=$(get_class 6)
+
+    echo "(box
+        :class \"works\"
+        :orientation \"v\"
+        :halign \"center\"
+        :valign \"start\"
+        :space-evenly \"false\"
+        :spacing \"-5\"
+
+        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"1\\\" })'\" :class \"$c1\" \"\")
+        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"2\\\" })'\" :class \"$c2\" \"\")
+        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"3\\\" })'\" :class \"$c3\" \"\")
+        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"4\\\" })'\" :class \"$c4\" \"\")
+        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"5\\\" })'\" :class \"$c5\" \"\")
+        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"6\\\" })'\" :class \"$c6\" \"\")
+    )"
+}
+
+workspaces
+
+# socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock |
+# while read -r line; do
+#     case "$line" in
+#         workspace*|focusedmon*|createworkspace*|destroyworkspace*|openwindow*|closewindow*|movewindow*)
+#             workspaces
+#             ;;
+#     esac
+# done

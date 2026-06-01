@@ -1,6 +1,7 @@
 (defvar IMAGE "~/.config/eww/images/profile.jpeg")
 (defvar volume_visible false)
 (defvar mic_visible false)
+(defvar show_power_buttons false)
 
 (defvar end-binary "~/.local/bin/end-rs")
 (defvar eww "~/.local/bin/eww")
@@ -89,59 +90,6 @@
   :vexpand "false"
   (main))
 
-(defwindow system_power
-  :namespace "system_power"
-
-  :geometry (geometry
-    :anchor "center"
-    :width "100%"
-    :height "110%"
-    :x "0px"
-    :y "0px")
-
-  :stacking "overlay"
-
-  (box
-    :class "power_overlay"
-    :halign "center"
-    :valign "center"
-    :hexpand true
-    :vexpand true
-
-    (box
-      :class "power_menu"
-      :orientation "v"
-      :spacing 20
-
-      (label
-        :class "power_title"
-        :text "Power Menu")
-
-      (box
-        :class "power_buttons"
-        :orientation "h"
-        :spacing 15
-
-        (button
-          :class "power_btn"
-          :onclick "systemctl poweroff"
-          "󰐥")
-
-        (button
-          :class "power_btn"
-          :onclick "systemctl reboot"
-          "󰜉")
-
-        (button
-          :class "power_btn"
-          :onclick "hyprlock"
-          "󰍁")
-
-        (button
-          :class "power_btn"
-          :onclick "hyprctl dispatch exit"
-          "󰗼")))))
-
 (defwindow volume_osd
   :namespace "osd"
 
@@ -164,47 +112,55 @@
     :class "bg"
     :orientation "v"
     :space-evenly "false"
-    
+
     (box
       :class "main_container"
       :orientation "v"
       :space-evenly "false"
       :spacing 15
       :vexpand "true"
-      
+
       (box
         :orientation "h"
         :spacing 15
         :space-evenly "true"
         :class "container"
-        
+
         (profile)
         (porwerbuttons))
-      
+
+    (box
+        :orientation "h"
+        :spacing 15
+        :space-evenly "true"
+        :class "container"
+
+        (porwer_buttons))
+
       (box
         :orientation "v"
         :spacing 15
         :space-evenly "true"
         :class "container"
-        
+
         (audio))
-      
+
       (box
         :orientation "v"
         :spacing 15
         :space-evenly "true"
         :class "container"
-        
+
         (music_panel)
       )
-      
+
       (box
         :orientation "v"
         :spacing 15
         :space-evenly "false"
         :class "container"
         :vexpand "true"
-        
+
         (network_status)
 
         (box :vexpand "true")
@@ -217,9 +173,9 @@
 
           (time_widget)
           (box :hexpand "true")
-          (button 
+          (button
             :class "silent_btn"
-            :onclick "~/scripts/toggle_notifications" 
+            :onclick "~/scripts/toggle_notifications"
             "󰂛"
           )
         )
@@ -266,6 +222,25 @@
     (calendar_widget)
   ))
 
+(defwindow bar_calendar_widget_window
+  :namespace "music_player"
+
+  :geometry (geometry
+    :anchor "left bottom"
+    :x "12px"
+  :y "12px")
+  :stacking "fg"
+  :hexpand "false"
+  :vexpand "false"
+
+    (box
+    :class "bg"
+    :orientation "v"
+    :space-evenly "false"
+
+    (calendar_widget)
+  ))
+
 
 (defwindow updates_widget_window
   :namespace "updates_widget"
@@ -282,7 +257,20 @@
   (updates_widget)
 )
 
+(defwindow main_bar
+    :geometry (geometry :x "0"
+						:y "0"
+						:height "100%"
+						:width "47px")
+	:monitor 0
+    :stacking "fg"
+    :geometry (geometry :x 0 :y 0 :width "40px" :height "100%" :anchor "center left")
+    :reserve (struts :distance "40px" :side "left")
+    :exclusive true
+	:namespace "main_left_bar"
 
+	(bar)
+)
 
 (include "widgets/profile.yuck")
 (include "widgets/power.yuck")
@@ -294,4 +282,5 @@
 (include "widgets/music_player.yuck")
 (include "widgets/calendar.yuck")
 (include "widgets/updates.yuck")
-
+(include "widgets/power_buttons.yuck")
+(include "widgets/bar.yuck")

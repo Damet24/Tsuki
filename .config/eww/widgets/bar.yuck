@@ -1,0 +1,107 @@
+(deflisten workspaces :initial '{"DP-2": [], "HDMI-A-1": []}' "./swayspaces.py")
+(defvar my-json '[1, 2, 3, 4, 5]')
+(defvar show_power_icons false)
+
+(defwidget bar []
+    (box
+        :class "bar"
+        :orientation "v"
+        :space-evenly false
+        :spacing 15
+
+        (box
+            :orientation "v"
+            :vexpand false
+
+            (launcher)
+        )
+
+        (box
+            :orientation "v"
+            :vexpand true
+        )
+
+        (box
+            :orientation "v"
+
+            (settings)
+            (clock)
+            (power)
+        )
+    )
+)
+
+(defwidget launcher []
+    (eventbox
+        :cursor "pointer"
+
+        (box
+            :class "launcher"
+
+            (button "")
+        )
+    )
+)
+
+(defwidget clock []
+    (eventbox
+        :cursor "pointer"
+        :onclick "~/.config/eww/launch_bar_calendar"
+
+        (box
+            :class "clock_widget"
+            :orientation "v"
+            :space-evenly false
+            :vexpand false
+
+            (label :text time_hour)
+            (label :text time_min)
+        )
+    )
+)
+
+(defwidget settings []
+    (eventbox
+        :cursor "pointer"
+
+        (label :text "")
+    )
+)
+
+(defwidget power []
+    (eventbox
+        :cursor "pointer"
+        :onhover "~/.local/bin/eww update show_power_icons=true"
+        :onhoverlost "~/.local/bin/eww update show_power_icons=false"
+
+        (box
+            :orientation "v"
+
+            (revealer
+                :transition "slidedown"
+                :reveal show_power_icons
+
+                (box
+                    :orientation "v"
+
+                    (button
+                        :onclick "systemctl poweroff"
+                        "󰐥"
+                    )
+
+                    (button
+                        :onclick "systemctl reboot"
+                        "󰜉"
+                    )
+
+                    (button
+                        :onclick "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
+                        "󰗼"
+                    )
+                )
+            )
+
+            (label :text "" )
+        )
+    )
+)

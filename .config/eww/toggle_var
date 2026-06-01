@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "$PATH" > /tmp/eww-path.log
 VAR_NAME="$1"
 
 if [ -z "$VAR_NAME" ]; then
@@ -7,10 +8,10 @@ if [ -z "$VAR_NAME" ]; then
     exit 1
 fi
 
-CURRENT=$(eww get "$VAR_NAME")
+CURRENT=$(~/.local/bin/eww get "$VAR_NAME")
 
 if [ "$CURRENT" = "true" ]; then
-    eww update "$VAR_NAME=false"
+    ~/.local/bin/eww update "$VAR_NAME=false"
 else
-    eww update "$VAR_NAME=true"
+    ~/.local/bin/eww update "$VAR_NAME=true"
 fi

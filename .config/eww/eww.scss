@@ -5,8 +5,8 @@
 ========================= */
 
 * {
-  all: unset;
-  font-family: HackNerdFont;
+    all: unset;
+    font-family: HackNerdFont;
 }
 
 /* =========================
@@ -24,17 +24,17 @@ $padding_md: 15px;
 ========================= */
 
 @mixin card {
-  background-color: $muted;
-  border-radius: $radius_md;
+    background-color: $muted;
+    border-radius: $radius_md;
 }
 
 @mixin container {
-  padding: $padding_md;
+    padding: $padding_md;
 }
 
 @mixin bg_container {
-  @include card;
-  @include container;
+    @include card;
+    @include container;
 }
 
 /* =========================
@@ -42,20 +42,20 @@ $padding_md: 15px;
 ========================= */
 
 .backgorund_trans {
-  background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.35);
 }
 
 .bg {
-  background-color: $bg;
-  border-radius: $radius_lg;
+    background-color: $bg;
+    border-radius: $radius_lg;
 }
 
 .main_container {
-  padding: $padding_md;
+    padding: $padding_md;
 }
 
 .container {
-  padding: 0;
+    padding: 0;
 }
 
 /* =========================
@@ -63,12 +63,12 @@ $padding_md: 15px;
 ========================= */
 
 .silent_btn {
-  min-width: 20px;
-  min-height: 20px;
+    min-width: 20px;
+    min-height: 20px;
 
-  border-radius: $radius_sm;
+    border-radius: $radius_sm;
 
-  font-size: 22px;
+    font-size: 22px;
 }
 
 /* =========================
@@ -76,50 +76,50 @@ $padding_md: 15px;
 ========================= */
 
 .bg_container {
-  @include bg_container;
+    @include bg_container;
 
-  min-height: 80px;
+    min-height: 80px;
 }
 
 .system_power_widget {
-  background-color: $bg;
-  min-height: 30px;
-  min-width: 80px;
+    background-color: $bg;
+    min-height: 30px;
+    min-width: 80px;
 }
 
 calendar {
-  border-radius: 20px;
-  background-color: $bg;
-  font-family: Roboto;
-  font-size: 1.2rem;
-  font-weight: normal;
+    border-radius: 20px;
+    background-color: $bg;
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-weight: normal;
 }
 
 calendar:selected {
-  color: $accent;
-  border-radius: 50%;
+    color: $accent;
+    border-radius: 50%;
 }
 
 calendar.header {
-  color: $fg;
-  font-weight: bold;
+    color: $fg;
+    font-weight: bold;
 }
 
 calendar.button {
-  color: $muted;
+    color: $muted;
 }
 
 calendar.button:hover {
-  color: $accent;
+    color: $accent;
 }
 
 calendar.highlight {
-  color: $fg;
-  font-weight: bold;
+    color: $fg;
+    font-weight: bold;
 }
 
 calendar:indeterminate {
-  color: $muted;
+    color: $muted;
 }
 
 /* =========================
@@ -134,4 +134,6 @@ calendar:indeterminate {
 @import "widgets/network";
 @import "widgets/end";
 @import "widgets/music_player";
-@import "widgets/updates"
+@import "widgets/updates";
+@import "widgets/power_buttons";
+@import "widgets/bar";

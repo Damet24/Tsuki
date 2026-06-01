@@ -5,15 +5,17 @@
     :spacing 15
     :valign "center"
     :halign "end"
-    
+
     (button
       :class "powermenu_btn"
-      :onclick "/usr/bin/hyprlock" "󰍁"
+      :onclick "/usr/bin/hyprlock"
+      "󰍁"
     )
 
     (button
       :class "powermenu_btn"
-      :onclick "" "󰐥"
+      :onclick "/home/damet/.config/eww/toggle_var show_power_buttons"
+      "󰐥"
     )))
 
 (defwidget system_panel []
@@ -27,15 +29,15 @@
       :orientation "h"
       :spacing 15
 
-      (button 
+      (button
         "󰒮"
       )
 
-      (button 
+      (button
         "󰒮"
       )
 
-      (button 
+      (button
         "󰒮"
       )
     )
@@ -44,15 +46,15 @@
       :orientation "h"
       :spacing 15
 
-      (button 
+      (button
         "󰒮"
       )
 
-      (button 
+      (button
         "󰒮"
       )
 
-      (button 
+      (button
         "󰒮"
       )
     )

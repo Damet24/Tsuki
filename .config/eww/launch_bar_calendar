@@ -4,7 +4,7 @@ FILE="$HOME/.cache/eww_launch_side.xyz"
 EWW="$HOME/.local/bin/eww -c $HOME/.config/eww"
 
 w_ls="
-minimal
+bar_calendar_widget_window
 "
 
 ## Start daemon if not running
@@ -23,7 +23,6 @@ close_eww() {
 	for win in $w_ls; do
 		$EWW close "$win"
 	done
-	$EWW update show_power_buttons=false
 }
 
 ## Toggle logic

@@ -36,3 +36,10 @@
 [2026-05-28T08:33:57.493275] SYNC end
 [2026-05-28T08:35:55.401503] SYNC start profile=default
 [2026-05-28T08:35:55.437709] SYNC end
+[2026-05-31T13:32:31.630854] SYNC start profile=default
+[2026-05-31T13:32:31.634759] LINK /home/damet/.config/eww/launch_system_power -> /home/damet/Documents/tsuki/.config/eww/launch_system_power
+[2026-05-31T13:32:31.671116] SYNC end
+[2026-06-01T10:55:50.351150] SYNC start profile=default
+[2026-06-01T10:55:50.354570] LINK /home/damet/scripts/workspaces -> /home/damet/Documents/tsuki/scripts/workspaces
+[2026-06-01T10:55:50.356027] LINK /home/damet/.config/eww/launch_bar_calendar -> /home/damet/Documents/tsuki/.config/eww/launch_bar_calendar
+[2026-06-01T10:55:50.417066] SYNC end

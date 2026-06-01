@@ -26,5 +26,13 @@
   "/home/damet/.config/hypr/hyprpaper.conf": {
     "src": "/home/damet/Documents/tsuki/.config/hypr/hyprpaper.conf",
     "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "/home/damet/scripts/workspaces": {
+    "src": "/home/damet/Documents/tsuki/scripts/workspaces",
+    "hash": "e2cc32172e610d29b42984a02c57893bf063b7e6c939aa5eeae9d311334d7e56"
+  },
+  "/home/damet/.config/eww/launch_bar_calendar": {
+    "src": "/home/damet/Documents/tsuki/.config/eww/launch_bar_calendar",
+    "hash": "b7face8688b1a44c9e4925405bfb7f5fb348ae1c8a5438ed645e98491993e47b"
   }
 }

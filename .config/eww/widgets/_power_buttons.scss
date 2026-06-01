@@ -1,0 +1,15 @@
+.porwer_buttons {
+    /* @include "container"; */
+}
+
+.power_system_btn {
+    /* color: #ff0000; */
+    border-radius: $radius_sm;
+    padding: $padding_md;
+    font-size: 20px;
+
+    &:hover {
+        background-color: $muted;
+        color: $accent;
+    }
+}

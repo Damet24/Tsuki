@@ -1,0 +1,30 @@
+
+(defwidget porwer_buttons []
+    (revealer
+        :transition "slidedown"
+        :reveal show_power_buttons
+        :duration "550ms"
+
+            (box
+                :orientation "h"
+
+                (button
+                    :class "power_system_btn"
+                    :onclick "systemctl poweroff"
+                    "󰐥"
+                )
+
+                (button
+                    :class "power_system_btn"
+                    :onclick "systemctl reboot"
+                    "󰜉"
+                )
+
+                (button
+                    :class "power_system_btn"
+                    :onclick "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
+                    "󰗼"
+                )
+            )
+        )
+    )

@@ -1,0 +1,16 @@
+@mixin font_awesome {
+    font-family: "Font Awesome 6 Pro";
+}
+
+.bar {
+    background-color: $bg;
+    font-family: Roboto;
+}
+
+.clock_widget {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.launcher {
+}
