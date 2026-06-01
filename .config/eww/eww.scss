@@ -58,6 +58,22 @@ $padding_md: 15px;
     padding: 0;
 }
 
+.shortcuts {
+    background-color: $bg;
+    border-radius: $radius_lg;
+    min-width: 70px;
+
+    padding: $padding_md 0px;
+}
+
+.shortcut_label {
+    font-size: 2rem;
+
+    &:hover {
+        color: $accent;
+    }
+}
+
 /* =========================
    BUTTON
 ========================= */
@@ -132,6 +148,10 @@ tooltip label {
     color: $fg;
     font-size: 14px;
     font-weight: 500;
+}
+
+.shortcuts_panel {
+    background-color: $bg;
 }
 
 /* =========================

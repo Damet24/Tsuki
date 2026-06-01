@@ -38,5 +38,9 @@
   "/home/damet/scripts/workspaces_map.json": {
     "src": "/home/damet/Documents/tsuki/scripts/workspaces_map.json",
     "hash": "9dc78e09f68bc30e2454e7fdf011aebda197dbd12b3d223303b6be30b0508f1c"
+  },
+  "/home/damet/scripts/open_with_browser": {
+    "src": "/home/damet/Documents/tsuki/scripts/open_with_browser",
+    "hash": "5156b4c954546739dc13b11956576697d209330cb229c13d096d2ac47fbeb1b2"
   }
 }

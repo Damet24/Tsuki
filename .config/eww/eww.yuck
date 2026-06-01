@@ -82,7 +82,7 @@
 
   :geometry (geometry
     :anchor "center left"
-    :width "450px"
+    :width "480px"
     :height "650px"
     :x "12px"
     :y "50%")
@@ -109,81 +109,132 @@
   (volume_osd_widget))
 
 (defwidget main []
-  (box
-    :class "bg"
-    :orientation "v"
-    :space-evenly "false"
-
     (box
-      :class "main_container"
-      :orientation "v"
-      :space-evenly "false"
-      :spacing 15
-      :vexpand "true"
-
-      (box
+        :class "main_container"
         :orientation "h"
-        :spacing 15
-        :space-evenly "true"
-        :class "container"
+        :spacing 10
+        :space-evenly false
 
-        (profile)
-        (porwerbuttons))
-
-    (box
-        :orientation "h"
-        :spacing 15
-        :space-evenly "true"
-        :class "container"
-
-        (porwer_buttons))
-
-      (box
-        :orientation "v"
-        :spacing 15
-        :space-evenly "true"
-        :class "container"
-
-        (audio))
-
-      (box
-        :orientation "v"
-        :spacing 15
-        :space-evenly "true"
-        :class "container"
-
-        (music_panel)
-      )
-
-      (box
-        :orientation "v"
-        :spacing 15
-        :space-evenly "false"
-        :class "container"
-        :vexpand "true"
-
-        (network_status)
-
-        (box :vexpand "true")
-
-        (systray)
         (box
-          :orientation "h"
-          :space-evenly "false"
-          :hexpand "true"
-          :vexpand "false"
+            :class "bg"
+            :orientation "v"
+            :hexpand true
+            :space-evenly "false"
 
-          (time_widget)
-          (box :hexpand "true")
-          (button
-            :class "silent_btn"
-            :onclick "~/scripts/toggle_notifications"
-            "󰂛"
-          )
+            (box
+            :class "main_container"
+            :orientation "v"
+            :space-evenly "false"
+            :spacing 15
+            :vexpand "true"
+
+                (box
+                    :orientation "h"
+                    :spacing 15
+                    :space-evenly "true"
+                    :class "container"
+
+                    (profile)
+                    (porwerbuttons))
+
+                (box
+                    :orientation "h"
+                    :spacing 15
+                    :space-evenly "true"
+                    :class "container"
+
+                    (porwer_buttons)
+                )
+
+                (box
+                    :orientation "v"
+                    :spacing 15
+                    :space-evenly "true"
+                    :class "container"
+
+                    (audio))
+
+                (box
+                    :orientation "v"
+                    :spacing 15
+                    :space-evenly "true"
+                    :class "container"
+
+                    (music_panel)
+                )
+
+                (box
+                    :orientation "v"
+                    :spacing 15
+                    :space-evenly "false"
+                    :class "container"
+                    :vexpand "true"
+
+                    (network_status)
+
+                    (box :vexpand "true")
+
+                    (systray)
+                    (box
+                        :orientation "h"
+                        :space-evenly "false"
+                        :hexpand true
+                        :vexpand false
+
+                        (time_widget)
+                        (box :hexpand "true")
+                        (button
+                            :class "silent_btn"
+                            :onclick "~/scripts/toggle_notifications"
+                            "󰂛"
+                        )
+                    )
+                )
+            )
         )
-      )
+
+        (box
+            :class "shortcuts"
+            :vexpand true
+            :valign "fill"
+            :espace-evenly false
+            :orientation "v"
+
+            (box
+                :orientation "v"
+                :valign "start"
+                :spacing 15
+
+                (eventbox
+                    :cursor "pointer"
+                    :hexpand false
+                    :vexpand false
+                    :valign "center"
+                    :halign "center"
+
+                    (button
+                        :class "shortcut_label"
+                        :onclick "~/scripts/open_with_browser https://github.com/damet24/tsuki" ""
+                    )
+                )
+
+                (eventbox
+                    :cursor "pointer"
+                    :hexpand false
+                    :vexpand false
+                    :valign "center"
+                    :halign "center"
+
+                    (button
+                        :class "shortcut_label"
+                        :onclick "~/scripts/open_with_browser https://youtube.com" ""
+                    )
+                )
+            )
+
+        )
     )
-  ))
+  )
 
 (defwindow music_player_window
   :namespace "music_player"
