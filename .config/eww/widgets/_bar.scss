@@ -5,12 +5,51 @@
 .bar {
     background-color: $bg;
     font-family: Roboto;
+    padding: 0.3rem;
 }
 
 .clock_widget {
-    font-size: 16px;
+    font-size: 1.2rem;
     font-weight: bold;
+    color: $fg;
+    margin: 8px 0px;
 }
 
 .launcher {
+    @include font_awesome;
+    color: $fg;
+}
+
+.bar_power_widget {
+    @include font_awesome;
+}
+
+// Powermenu
+.powermenu {
+    @include font_awesome;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.button-bspres,
+.button-reb,
+.button-lock,
+.button-quit {
+    padding: 0.5rem 0.2rem 0.3rem 0.2rem;
+    color: $fg;
+
+    &:hover {
+        color: $accent;
+    }
+}
+.button-off {
+    margin: 0.5rem;
+    color: $fg;
+
+    &:hover {
+        color: $accent;
+    }
+}
+
+.selected {
+    color: $accent;
 }

@@ -1,59 +1,143 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-workspaces() {
-    ACTIVE=$(hyprctl activeworkspace -j | jq -r '.id')
-    WORKSPACES=$(hyprctl workspaces -j)
+"""
+parse_workspaces_hyprland.py
 
-    get_class() {
-        local ws=$1
+Obtiene los workspaces y ventanas de Hyprland y genera un JSON
+para Eww u otros widgets.
+"""
 
-        local windows=$(echo "$WORKSPACES" | jq "[.[] | select(.id == $ws)][0].windows // 0")
+import json
+import os
+import socket
+import subprocess
+import sys
 
-        local occupied=""
-        local focused=""
+# EDITA ESTA RUTA
+icon_map_path = "/home/damet/scripts/workspaces_map.json"
 
-        if [ "$windows" -gt 0 ]; then
-            occupied="$ws"
-        fi
+HYPRLAND_INSTANCE_SIGNATURE = os.getenv("HYPRLAND_INSTANCE_SIGNATURE")
+XDG_RUNTIME_DIR = os.getenv("XDG_RUNTIME_DIR")
 
-        if [ "$ACTIVE" -eq "$ws" ]; then
-            focused="$ws"
-        fi
+if not HYPRLAND_INSTANCE_SIGNATURE:
+    raise RuntimeError("HYPRLAND_INSTANCE_SIGNATURE no está definido")
 
-        echo "0${occupied}${focused}"
+if not XDG_RUNTIME_DIR:
+    raise RuntimeError("XDG_RUNTIME_DIR no está definido")
+
+SOCKET_PATH = f"{XDG_RUNTIME_DIR}/hypr/{HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock"
+
+if not os.path.exists(SOCKET_PATH):
+    raise FileNotFoundError(f"Socket de Hyprland no encontrado: {SOCKET_PATH}")
+
+
+def hyprctl_json(command):
+    """Ejecuta hyprctl y devuelve JSON."""
+    result = subprocess.run(
+        ["hyprctl", command, "-j"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return json.loads(result.stdout)
+
+
+def generate_payload(icon_map):
+    active_workspace = hyprctl_json("activeworkspace")
+    current_workspace = int(active_workspace["id"])
+
+    active_window = hyprctl_json("activewindow")
+
+    if "title" in active_window:
+        current_window_title = active_window["title"]
+
+        if len(current_window_title) > 100:
+            current_window_title = (
+                current_window_title[:50] + "..." + current_window_title[-50:]
+            )
+    else:
+        current_window_title = ""
+
+    clients = hyprctl_json("clients")
+
+    icons = {}
+
+    for client in clients:
+        workspace = int(client["workspace"]["id"])
+
+        processname = client.get("class", "")
+        win_title = client.get("title", "")
+
+        if not processname:
+            continue
+
+        title_key = win_title.split(" ")[0] if win_title else ""
+
+        if title_key in icon_map:
+            icon = icon_map[title_key]
+        elif processname in icon_map:
+            icon = icon_map[processname]
+        else:
+            icon = icon_map["no-icon"]
+
+        if workspace not in icons:
+            icons[workspace] = {
+                "icons": [],
+                "workspace": workspace,
+                "process": processname,
+                "current": workspace == current_workspace,
+            }
+
+        icons[workspace]["icons"].append(icon)
+
+    if current_workspace not in icons:
+        icons[current_workspace] = {
+            "icons": [icon_map["default"]],
+            "workspace": current_workspace,
+            "process": "<empty>",
+            "current": True,
+        }
+
+    return {
+        "title": current_window_title,
+        "icons": [icons[i] for i in sorted(icons.keys())],
     }
 
-    c1=$(get_class 1)
-    c2=$(get_class 2)
-    c3=$(get_class 3)
-    c4=$(get_class 4)
-    c5=$(get_class 5)
-    c6=$(get_class 6)
 
-    echo "(box
-        :class \"works\"
-        :orientation \"v\"
-        :halign \"center\"
-        :valign \"start\"
-        :space-evenly \"false\"
-        :spacing \"-5\"
+def main():
+    print(
+        f"Using Hyprland socket: {SOCKET_PATH}",
+        file=sys.stderr,
+    )
 
-        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"1\\\" })'\" :class \"$c1\" \"\")
-        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"2\\\" })'\" :class \"$c2\" \"\")
-        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"3\\\" })'\" :class \"$c3\" \"\")
-        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"4\\\" })'\" :class \"$c4\" \"\")
-        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"5\\\" })'\" :class \"$c5\" \"\")
-        (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"6\\\" })'\" :class \"$c6\" \"\")
-    )"
-}
+    with open(icon_map_path, "r") as f:
+        icon_map = json.load(f)
 
-workspaces
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as socket_client:
+        socket_client.connect(SOCKET_PATH)
 
-# socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock |
-# while read -r line; do
-#     case "$line" in
-#         workspace*|focusedmon*|createworkspace*|destroyworkspace*|openwindow*|closewindow*|movewindow*)
-#             workspaces
-#             ;;
-#     esac
-# done
+        while True:
+            try:
+                payload = generate_payload(icon_map)
+
+                print(
+                    json.dumps(payload, ensure_ascii=False),
+                    flush=True,
+                )
+
+                # Esperar evento de Hyprland
+                data = socket_client.recv(4096)
+
+                if not data:
+                    break
+
+            except Exception as e:
+                print(
+                    f"Error: {e}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+
+
+if __name__ == "__main__":
+    main()

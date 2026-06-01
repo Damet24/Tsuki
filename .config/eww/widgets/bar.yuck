@@ -1,44 +1,89 @@
-(deflisten workspaces :initial '{"DP-2": [], "HDMI-A-1": []}' "./swayspaces.py")
 (defvar my-json '[1, 2, 3, 4, 5]')
 (defvar show_power_icons false)
+
+
+;; Configuration
+;; for further configuration see scripts/parse_workspaces.py
+;; where you can set your icons
+
+;; Enables process name preview on selected workspace
+(defvar enable_process_name false)
+
+;; Shows the workspace number beside the icon
+(defvar enable_workspace_number false)
+
+;; Enables multiple icon previews per workspace
+(defvar enable_multiple_icons false)
+(deflisten workspace_str
+    :initial_value "{}"
+    "$HOME/scripts/workspaces")
 
 (defwidget bar []
     (box
         :class "bar"
         :orientation "v"
+        :vexpand false
+        :hexpand false
+
+		(top)
+		; (center)
+        (end)
+    )
+)
+
+(defwidget top []
+	(box
+	    :orientation "v"
+		:space-evenly false
+		:valign "start"
+
+		(launcher)
+		(workspaces)
+	)
+)
+
+; (defwidget center []
+; 	(box
+; 	    :orientation "v"
+; 		:space-evenly false
+; 		:valign "center"
+
+; 		(workspaces)
+; 	)
+; )
+
+
+(defwidget end []
+	(box
+	    :orientation "v"
         :space-evenly false
-        :spacing 15
+        :valign "end"
+        :spacing 5
 
-        (box
-            :orientation "v"
-            :vexpand false
+		(bottom)
+    )
+)
 
-            (launcher)
-        )
+(defwidget bottom []
+	(box
+	    :orientation "v"
+		:space-evenly false
 
-        (box
-            :orientation "v"
-            :vexpand true
-        )
-
-        (box
-            :orientation "v"
-
-            (settings)
-            (clock)
-            (power)
-        )
+		(settings)
+		(clock)
+        (power)
     )
 )
 
 (defwidget launcher []
     (eventbox
         :cursor "pointer"
+        :space-evenly false
+        :halign "center"
+        :valign "center"
 
         (box
             :class "launcher"
-
-            (button "")
         )
     )
 )
@@ -46,6 +91,8 @@
 (defwidget clock []
     (eventbox
         :cursor "pointer"
+        :space-evenly false
+        :vexpand false
         :onclick "~/.config/eww/launch_bar_calendar"
 
         (box
@@ -53,6 +100,8 @@
             :orientation "v"
             :space-evenly false
             :vexpand false
+            :spacing 0
+            :tooltip "${time_day_name}, ${time_month_name}, ${calendar_year}"
 
             (label :text time_hour)
             (label :text time_min)
@@ -63,45 +112,102 @@
 (defwidget settings []
     (eventbox
         :cursor "pointer"
+        :space-evenly false
+        :vexpand false
 
-        (label :text "")
+        (label :text "")
     )
 )
 
 (defwidget power []
-    (eventbox
-        :cursor "pointer"
-        :onhover "~/.local/bin/eww update show_power_icons=true"
-        :onhoverlost "~/.local/bin/eww update show_power_icons=false"
+	(eventbox
+	    :onhover "${eww} update show_power_icons=true"
+		:onhoverlost "${eww} update show_power_icons=false"
 
-        (box
-            :orientation "v"
+		(box
+		    :orientation "v"
+			:space-evenly "false"
+			:vexpand "false"
+			:class "powermenu"
 
-            (revealer
-                :transition "slidedown"
-                :reveal show_power_icons
+			(revealer
+			    :transition "slideup"
+				:reveal show_power_icons
+				:duration "550ms"
+
+				(box
+				    :orientation "v"
+					:space-evenly "false"
+
+    	            (button
+    					:class "button-bspres"
+        				:tooltip "Hyperland Restart"
+        				:onclick "hyprctl reload" ""
+                    )
+
+                   	(button
+                        :class "button-reb"
+                  		:tooltip "Reboot"
+             			:onclick "reboot"	""
+                    )
+
+                   	(button
+                  		:class "button-quit"
+        				:tooltip "Logout"
+        				:onclick "" ""
+                    )
+
+                   	(button
+                  		:class "button-lock"
+        				:tooltip "Lock Screen"
+        				:onclick "hyprlock"	""
+                    )
+                )
+			)
+
+           	(button
+               	:class "button-off"
+               	:tooltip "Shutdown"
+               	:onclick "shutdown now"	""
+            )
+        )
+	)
+)
+
+(defwidget workspaces []
+    (box
+        :class "workspaces"
+        :spacing 16
+        :orientation "v"
+        :space-evenly false
+        :valign "center"
+        :halign "center"
+
+        (for workspace in "${workspace_str['icons']}"
+            (eventbox
+                :cursor "pointer"
+                :onclick "hyprctl dispatch 'hl.dsp.focus({ workspace = '${workspace.workspace}' })'"
 
                 (box
-                    :orientation "v"
+                    :spacing 10
+                    :space-evenly false
+                    :hexpand false
+                    :vexpand false
+                    :halign "center"
+                    :valign "center"
+                    :class "${workspace.current ? 'selected' : 'not-selected'}"
 
-                    (button
-                        :onclick "systemctl poweroff"
-                        "󰐥"
-                    )
+                    (for icon in
+                        "${enable_multiple_icons ? '${workspace['icons']}' : '[${jq(workspace, '.icons[0]')}]'}"
 
-                    (button
-                        :onclick "systemctl reboot"
-                        "󰜉"
-                    )
-
-                    (button
-                        :onclick "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
-                        "󰗼"
+                        (label
+                            :class "icon"
+                            :text "${icon}"
+                            :tooltip "${workspace['process']}"
+                        )
                     )
                 )
             )
-
-            (label :text "" )
         )
     )
 )

@@ -43,3 +43,9 @@
 [2026-06-01T10:55:50.354570] LINK /home/damet/scripts/workspaces -> /home/damet/Documents/tsuki/scripts/workspaces
 [2026-06-01T10:55:50.356027] LINK /home/damet/.config/eww/launch_bar_calendar -> /home/damet/Documents/tsuki/.config/eww/launch_bar_calendar
 [2026-06-01T10:55:50.417066] SYNC end
+[2026-06-01T12:56:17.992730] SYNC start profile=default
+[2026-06-01T12:56:17.995588] LINK /home/damet/scripts/orkspaces_map.json -> /home/damet/Documents/tsuki/scripts/orkspaces_map.json
+[2026-06-01T12:56:18.031727] SYNC end
+[2026-06-01T12:56:34.461866] SYNC start profile=default
+[2026-06-01T12:56:34.464628] LINK /home/damet/scripts/workspaces_map.json -> /home/damet/Documents/tsuki/scripts/workspaces_map.json
+[2026-06-01T12:56:34.522192] SYNC end

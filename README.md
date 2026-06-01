@@ -66,6 +66,12 @@ Make sure you have the following tools installed:
 - [nmcli](https://networkmanager.dev/) — Network management
 
 
+#### Fonts
+
+- [Nerd Fonts](https://www.nerdfonts.com/)
+- [Font Awesome](https://fontawesome.com/) 
+- 
+
 Use the included `scripts/sync` to symlink the config files to your `$HOME`:
 
 ```bash

@@ -7,6 +7,7 @@ hl.on("hyprland.start", function()
     -- hl.exec_cmd("waybar -c ~/.config/waybar/current/config.jsonc -s ~/.config/waybar/current/style.css")
     hl.exec_cmd("/home/damet/.local/bin/eww daemon")
     hl.exec_cmd("/home/damet/.local/bin/eww open volume_osd --screen 0")
+    hl.exec_cmd("/home/damet/.local/bin/eww open main_bar --screen 0")
     hl.exec_cmd("/home/damet/.local/bin/end-rs daemon")
 
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")

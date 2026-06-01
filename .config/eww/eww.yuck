@@ -74,6 +74,7 @@
   :stacking "fg"
   :hexpand "false"
   :vexpand "false"
+
   (main))
 
 (defwindow minimal
@@ -165,6 +166,7 @@
 
         (box :vexpand "true")
 
+        (systray)
         (box
           :orientation "h"
           :space-evenly "false"

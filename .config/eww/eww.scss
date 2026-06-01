@@ -6,7 +6,7 @@
 
 * {
     all: unset;
-    font-family: HackNerdFont;
+    font-family: Roboto;
 }
 
 /* =========================
@@ -120,6 +120,18 @@ calendar.highlight {
 
 calendar:indeterminate {
     color: $muted;
+}
+
+tooltip {
+    background-color: $bg; /* Nord-based example */
+    border-radius: $radius_sm;
+    padding: $padding_md;
+}
+
+tooltip label {
+    color: $fg;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 /* =========================

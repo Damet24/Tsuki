@@ -34,5 +34,9 @@
   "/home/damet/.config/eww/launch_bar_calendar": {
     "src": "/home/damet/Documents/tsuki/.config/eww/launch_bar_calendar",
     "hash": "b7face8688b1a44c9e4925405bfb7f5fb348ae1c8a5438ed645e98491993e47b"
+  },
+  "/home/damet/scripts/workspaces_map.json": {
+    "src": "/home/damet/Documents/tsuki/scripts/workspaces_map.json",
+    "hash": "9dc78e09f68bc30e2454e7fdf011aebda197dbd12b3d223303b6be30b0508f1c"
   }
 }
