@@ -61,6 +61,8 @@
   :interval "6s"
   "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print int($2*100)}'")
 
+(defpoll shortcuts :interval "30s"
+  "~/scripts/get_shortcuts")
 
 (defwindow main
   :namespace "main"
@@ -83,7 +85,7 @@
   :geometry (geometry
     :anchor "center left"
     :width "480px"
-    :height "650px"
+    :height "750px"
     :x "12px"
     :y "50%")
   :stacking "fg"
@@ -174,7 +176,7 @@
 
                     (box :vexpand "true")
 
-                    (systray)
+                    (updates_widget)
                     (box
                         :orientation "h"
                         :space-evenly "false"
@@ -197,7 +199,7 @@
             :class "shortcuts"
             :vexpand true
             :valign "fill"
-            :espace-evenly false
+            :space-evenly false
             :orientation "v"
 
             (box
@@ -205,29 +207,19 @@
                 :valign "start"
                 :spacing 15
 
-                (eventbox
-                    :cursor "pointer"
-                    :hexpand false
-                    :vexpand false
-                    :valign "center"
-                    :halign "center"
+                (for shortcut in "${shortcuts}"
+                    (eventbox
+                        :cursor "pointer"
+                        :hexpand false
+                        :vexpand false
+                        :valign "center"
+                        :halign "center"
 
-                    (button
-                        :class "shortcut_label"
-                        :onclick "~/scripts/open_with_browser https://github.com/damet24/tsuki" ""
-                    )
-                )
-
-                (eventbox
-                    :cursor "pointer"
-                    :hexpand false
-                    :vexpand false
-                    :valign "center"
-                    :halign "center"
-
-                    (button
-                        :class "shortcut_label"
-                        :onclick "~/scripts/open_with_browser https://youtube.com" ""
+                        (button
+                            :class "shortcut_label"
+                            :onclick "~/scripts/open_with_browser ${shortcut.url}"
+                            "${shortcut.icon}"
+                        )
                     )
                 )
             )

@@ -52,3 +52,7 @@
 [2026-06-01T15:22:33.321277] SYNC start profile=default
 [2026-06-01T15:22:33.324550] LINK /home/damet/scripts/open_with_browser -> /home/damet/Documents/tsuki/scripts/open_with_browser
 [2026-06-01T15:22:33.365655] SYNC end
+[2026-06-01T15:35:01.168964] SYNC start profile=default
+[2026-06-01T15:35:01.171845] LINK /home/damet/scripts/shortcuts.txt -> /home/damet/Documents/tsuki/scripts/shortcuts.txt
+[2026-06-01T15:35:01.172018] LINK /home/damet/scripts/get_shortcuts -> /home/damet/Documents/tsuki/scripts/get_shortcuts
+[2026-06-01T15:35:01.207358] SYNC end

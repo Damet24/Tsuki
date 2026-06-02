@@ -26,7 +26,7 @@
         :hexpand false
 
 		(top)
-		; (center)
+		(center)
         (end)
     )
 )
@@ -38,19 +38,18 @@
 		:valign "start"
 
 		(launcher)
-		(workspaces)
 	)
 )
 
-; (defwidget center []
-; 	(box
-; 	    :orientation "v"
-; 		:space-evenly false
-; 		:valign "center"
+(defwidget center []
+	(box
+	    :orientation "v"
+		:space-evenly false
+		:valign "center"
 
-; 		(workspaces)
-; 	)
-; )
+		(workspaces)
+	)
+)
 
 
 (defwidget end []
@@ -68,6 +67,7 @@
 	(box
 	    :orientation "v"
 		:space-evenly false
+		:spacing 5
 
 		(settings)
 		(clock)
@@ -84,6 +84,8 @@
 
         (box
             :class "launcher"
+
+            (label :text "")
         )
     )
 )
@@ -177,7 +179,7 @@
 (defwidget workspaces []
     (box
         :class "workspaces"
-        :spacing 16
+        :spacing 10
         :orientation "v"
         :space-evenly false
         :valign "center"
@@ -189,7 +191,7 @@
                 :onclick "hyprctl dispatch 'hl.dsp.focus({ workspace = '${workspace.workspace}' })'"
 
                 (box
-                    :spacing 10
+                    :spacing 5
                     :space-evenly false
                     :hexpand false
                     :vexpand false
@@ -198,11 +200,11 @@
                     :class "${workspace.current ? 'selected' : 'not-selected'}"
 
                     (for icon in
-                        "${enable_multiple_icons ? '${workspace['icons']}' : '[${jq(workspace, '.icons[0]')}]'}"
+                        "${enable_multiple_icons ? '${workspace['icon']}' : '[${jq(workspace, '.icons[0]')}]'}"
 
                         (label
                             :class "icon"
-                            :text "${icon}"
+                            :text "${workspace['workspace']}"
                             :tooltip "${workspace['process']}"
                         )
                     )

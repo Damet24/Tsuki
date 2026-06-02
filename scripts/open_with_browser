@@ -2,4 +2,4 @@
 
 flatpak run app.zen_browser.zen "$1" &
 hyprctl dispatch 'hl.dsp.focus({ window = "class:app.zen_browser.zen" })'
-~/.local/bin/eww close minimal
+~/.config/eww/launch_left

@@ -42,5 +42,13 @@
   "/home/damet/scripts/open_with_browser": {
     "src": "/home/damet/Documents/tsuki/scripts/open_with_browser",
     "hash": "5156b4c954546739dc13b11956576697d209330cb229c13d096d2ac47fbeb1b2"
+  },
+  "/home/damet/scripts/shortcuts.txt": {
+    "src": "/home/damet/Documents/tsuki/scripts/shortcuts.txt",
+    "hash": "d7bd1fec0a9eb8726c5afd428e21e42d5c6c43c1cdc8086ffa6bbe471d286a47"
+  },
+  "/home/damet/scripts/get_shortcuts": {
+    "src": "/home/damet/Documents/tsuki/scripts/get_shortcuts",
+    "hash": "f3ba77b04c11a942724cb3a83e86369c8946163ffebf2fabbe84941662dd6198"
   }
 }
